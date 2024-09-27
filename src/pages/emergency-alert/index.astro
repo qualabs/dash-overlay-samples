@@ -1,0 +1,35 @@
+---
+import EmergencyAlert from "@components/EmergencyAlert.astro";
+import IFrameLayout from "@layouts/IFrameLayout.astro";
+---
+
+<IFrameLayout title="Qualabs | Emergency Alert">
+  <div class="container h-full flex flex-col justify-center items-center">
+    <EmergencyAlert 
+      title="Tornado Alert" 
+      message="The National Weather Service has issued a tornado warning for the area. Please take precautions and stay inside." 
+    />
+  </div>
+</IFrameLayout>
+
+<style>
+  .container {
+    margin: 0 auto;
+  }
+
+  .alert-container  {
+    border: 1px solid rgba(224, 204, 250, 100%);
+    background: rgba(49, 10, 101, 100%);  
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0; 
+    text-transform: uppercase;
+  }
+  
+  p {
+    margin: 0;
+  } 
+</style>

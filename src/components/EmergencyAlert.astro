@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string;
+  message: string;
+}
+
+const { title, message } = Astro.props;
+---
+
+<div
+  class="alert-container flex flex-col justify-center items-center gap-5 p-4 mx-0 my-4 radius-md text-white rounded-lg"
+>
+  <h1>EMERGENCY ALERT SYSTEM</h1>
+  <h1>{title}</h1>
+  <p class="text-center">{message}</p>
+</div>
+
+<style>
+  .alert-container {
+    border: 1px solid rgba(224, 204, 250, 100%);
+    background: rgba(49, 10, 101, 100%);
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: 0;
+  }
+</style>
