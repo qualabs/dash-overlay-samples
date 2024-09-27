@@ -1,0 +1,142 @@
+---
+const items = [
+  { id: 1, text: "Item 1", path: "/item-1" },
+  { id: 2, text: "Item 2", path: "/item-1" },
+  { id: 3, text: "Item 3", path: "/item-1" },
+  { id: 4, text: "Item 4", path: "/item-1" },
+  { id: 5, text: "Item 5", path: "/item-1" },
+];
+---
+
+<style>
+  @keyframes scale-up {
+    0% {
+      opacity: 0;
+      transform: translateY(-90%) scale(0.7);
+      z-index: -1;
+    }
+    20%,
+    80% {
+      opacity: 1;
+      transform: none;
+      transform: scale(1);
+      z-index: 2;
+    }
+
+    30%,
+    70% {
+      z-index: 1;
+    }
+    100% {
+      transform: translateY(90%) scale(0.7);
+      z-index: -1;
+      opacity: 0;
+    }
+  }
+
+  @scroll-timeline scroll-scale {
+    source: auto;
+    orientation: block;
+    scroll-offsets:
+      start 0%,
+      end 100%;
+  }
+
+  .list-container {
+    max-width: 100%;
+    background-color: #152b5d;
+    margin: 0 auto;
+    padding: 0 1rem 2rem 1rem;
+
+    @media (min-width: 768px) {
+      background: transparent;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      padding: 1rem;
+      z-index: 10;
+      background: linear-gradient(0deg, transparent, #152b5d);
+
+      @media (min-width: 768px) {
+        background: transparent;
+      }
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 1rem;
+
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .list-item {
+        padding: 1rem;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: black;
+        height: auto;
+        border-radius: 0.33rem;
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        text-align: center;
+
+        transition: all 0.3s ease-in-out;
+
+        @supports (animation-timeline: view(y)) {
+          animation: scale-up linear both;
+          animation-timeline: view(y);
+        }
+
+        @media (min-width: 768px) {
+          animation: none;
+
+          &:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 2rem rgba(255, 255, 255, 0.06);
+          }
+        }
+
+        h3 {
+          margin: 0;
+          font-size: 1rem;
+          position: relative;
+          z-index: 0;
+        }
+
+        p {
+          margin: 0;
+          font-size: 0.75rem;
+          opacity: 0.9;
+          position: relative;
+
+          z-index: 0;
+        }
+      }
+    }
+  }
+</style>
+
+<div class="list-container">
+  <div class="header">
+    <h2>Samples</h2>
+  </div>
+  <ul class="list">
+    {
+      items.map((item) => (
+        <li>
+          <a class="list-item" href={item.path}>
+            <h3>{item.text}</h3>
+            <p>{item.text}</p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

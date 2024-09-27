@@ -1,0 +1,145 @@
+---
+import { Image } from "astro:assets";
+import imageIcon from "../assets/icons/image.svg";
+import PopOverlay from "./PopOverlay.astro";
+import qualabsAd from "../assets/qualabs-ad.png";
+import countDown from "../assets/countdown.png";
+import rocket from "../assets/rocket.png";
+import videoIcon from "../assets/icons/video.svg";
+import iframeIcon from "../assets/icons/iframe.svg";
+---
+
+<div class="hero-container">
+  <div class="hero-content">
+    <h1>
+      Elevate Video Experiences with <strong>Dynamic Overlays!</strong>
+    </h1>
+    <p>
+      Unlock new possibilities adding videos, images, and interactive iframes
+      into <strong>dash.js</strong>
+    </p>
+  </div>
+  <div class="hero-image">
+    <video id="video" class="video" controls></video>
+
+    <PopOverlay
+      title="Image"
+      icon={imageIcon}
+      top="0.5rem"
+      left="0.5rem"
+      backgroundColor="#D9E74C"
+      color="#3E3E3E"
+      delay="1s"
+    >
+      <Image
+        src={rocket}
+        alt="Qualabs Ad"
+        width="117"
+        height="77"
+        style="padding: 0.35rem;"
+      />
+    </PopOverlay>
+    <PopOverlay
+      title="PIP Video"
+      icon={videoIcon}
+      top="0.5rem"
+      right="0.5rem"
+      backgroundColor="#D9E74C"
+      color="#3E3E3E"
+      delay="4s"
+    >
+      <video id="video" class="video" controls></video>
+    </PopOverlay>
+    <PopOverlay
+      title="Image"
+      icon={videoIcon}
+      bottom="0.5rem"
+      left="0.5rem"
+      backgroundColor="#D9E74C"
+      color="#3E3E3E"
+      delay="7s"
+    >
+      <Image src={qualabsAd} alt="Qualabs Ad" width="117" height="77" />
+    </PopOverlay>
+    <PopOverlay
+      title="Image"
+      icon={iframeIcon}
+      bottom="0.5rem"
+      right="0.5rem"
+      backgroundColor="#D9E74C"
+      color="#3E3E3E"
+      delay="10s"
+    >
+      <Image src={countDown} alt="Qualabs Ad" width="117" height="77" />
+    </PopOverlay>
+  </div>
+
+  <style>
+    .hero-container {
+      display: grid;
+      gap: 1rem;
+      padding: 1rem;
+      position: relative;
+      z-index: 2;
+
+      .hero-content {
+        display: grid;
+        gap: 0.5rem;
+
+        h1 {
+          font-size: 1.125rem;
+          font-weight: 400;
+          text-align: center;
+
+          strong {
+            font-weight: 600;
+          }
+        }
+
+        p {
+          font-size: 0.85rem;
+          text-align: center;
+          font-weight: 400;
+          line-height: 150%;
+
+          text-align: center;
+
+          color: rgba(255, 255, 255, 0.7);
+
+          strong {
+            font-weight: 600;
+            color: white;
+          }
+        }
+      }
+      .hero-image {
+        position: relative;
+        video {
+          aspect-ratio: 16 / 9;
+          width: 100%;
+          border-radius: 0.5rem;
+        }
+      }
+
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+
+        .hero-content {
+          padding: 3rem;
+          h1 {
+            font-size: 2.5rem;
+            line-height: 120%;
+            text-align: left;
+          }
+
+          p {
+            width: 50%;
+            text-align: left;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  </style>
+</div>
