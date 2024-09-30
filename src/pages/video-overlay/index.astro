@@ -1,0 +1,91 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+---
+
+<MainLayout title="Qualabs | Video Overlay Sample">
+  <div class="container py-4">
+    <h3>Overlay Example</h3>
+  </div>
+  <div class="dash-video-player code">
+    <div class="videoContainer relative" id="videoContainer">
+      <video id="main-video" preload="auto" controls></video>
+      <div id="overlay"></div>
+      <div id="ttml-rendering-div"></div>
+    </div>
+  </div>
+
+  <div id="code-output"></div>
+  <footer class="pt-3 mt-4 border-top">&copy; DASH-IF</footer>
+</MainLayout>
+
+<style>
+  video {
+    width: 100%;
+  }
+
+  #overlay {
+    position: absolute;
+    pointer-events: none;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    video {
+      width: 100px;
+      top: 10px;
+      left: 10px;
+      position: absolute;
+    }
+  }
+
+  .dash-video-player {
+    position: relative;
+    margin: 0 auto;
+    line-height: 1;
+  }
+</style>
+
+<script class="code">
+  var CAPTION_URL = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+    video,
+    player;
+
+  function init() {
+    var url = CAPTION_URL,
+      TTMLRenderingDiv;
+
+    video = document.querySelector("#main-video");
+    TTMLRenderingDiv = document.querySelector("#ttml-rendering-div");
+    OverlayRenderingDiv = document.querySelector("#overlay");
+
+    player = dashjs.MediaPlayer().create();
+    player.initialize(video, url, true);
+    player.attachTTMLRenderingDiv(TTMLRenderingDiv);
+
+    /* This funciton will be part of dash.js*/
+    attachVideoOverlayRenderingDiv(OverlayRenderingDiv);
+  }
+
+  function attachVideoOverlayRenderingDiv(overlayElement) {
+    var overlayVideo = document.createElement("video");
+    overlayVideo.id = "video-overlay";
+    overlayVideo.loop = true;
+    overlayVideo.autoplay = true;
+    overlayVideo.src = "bear-vp9a.webm";
+    overlayElement.appendChild(overlayVideo);
+
+    player.on(dashjs.MediaPlayer.events.PLAYBACK_PLAYING, function () {
+      overlayVideo.play();
+    });
+
+    player.on(dashjs.MediaPlayer.events.PLAYBACK_PAUSED, function () {
+      overlayVideo.pause();
+    });
+  }
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    init();
+  });
+</script>
