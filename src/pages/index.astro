@@ -1,46 +1,13 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 import List from "@components/List.astro";
-import { Image } from "astro:assets";
 
-import dashjsLogo from "../assets/dashjs-logo.svg";
 import Hero from "@components/Hero.astro";
 ---
 
-<Layout title="Qualabs | dash.js Overlay Samples">
-  <main>
-    <Image src={dashjsLogo} alt="dash.js Logo" width="300" class="logo" />
-    <Hero />
-    <List />
-    <p class="copyright">Copyright © 2012-present</p>
-  </main>
-</Layout>
+<MainLayout title="Qualabs | dash.js Overlay Samples">
+  <Hero />
+  <List />
+</MainLayout>
 
-<style>
-  main {
-    margin: auto;
-    padding: 1rem 0;
-    width: 100%;
-    color: white;
-    font-size: 20px;
-    line-height: 1.6;
-    position: relative;
-  }
-  .logo {
-    margin: 0 auto;
-    width: 10rem;
-
-    @media (min-width: 768px) {
-      margin: 0;
-      margin: 1rem 4rem;
-    }
-  }
-
-  .copyright {
-    padding: 2rem 0;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 300;
-    opacity: 0.5;
-  }
-</style>
+<style></style>

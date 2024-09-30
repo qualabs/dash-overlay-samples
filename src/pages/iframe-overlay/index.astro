@@ -1,20 +1,22 @@
 ---
-import SampleLayout from "@layouts/SampleLayout.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 ---
 
-<SampleLayout title="Qualabs | iframe Overlay Sample">
+<MainLayout title="Qualabs | iframe Overlay Sample">
   <main>
     <h3>Overlay Example</h3>
 
     <div class="videoContainer relative" id="videoContainer">
       <video id="main-video" preload="auto" controls></video>
-      <div id="overlay"></div>
+      <div id="overlay">
+        <slot />
+      </div>
       <div id="ttml-rendering-div"></div>
     </div>
 
     <div id="code-output"></div>
   </main>
-</SampleLayout>
+</MainLayout>
 <style>
   video {
     width: 100%;
@@ -77,7 +79,6 @@ import SampleLayout from "@layouts/SampleLayout.astro";
     setTimeout(function () {
       attachOverlayRenderingDiv($overlayRenderingDiv);
     }, 3500);
-
   }
 
   function attachOverlayRenderingDiv(overlayElement) {
