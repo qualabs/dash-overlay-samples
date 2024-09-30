@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 
 import dashjsLogo from "../assets/dashjs-logo.svg";
+import { ViewTransitions } from "astro:transitions";
 interface Props {
   title: string;
 }
@@ -12,6 +13,7 @@ const { title } = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
+    <ViewTransitions />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,13 +27,16 @@ const { title } = Astro.props;
     />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-    <script is:inline src="https://cdn.dashjs.org/v3.1.0/dash.all.min.js"></script>
+    <script is:inline src="https://cdn.dashjs.org/v3.1.0/dash.all.min.js"
+    ></script>
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
   <body>
     <main>
-      <Image src={dashjsLogo} alt="dash.js Logo" width="300" class="logo" />
+      <a href="/">
+        <Image src={dashjsLogo} alt="dash.js Logo" width="300" class="logo" />
+      </a>
       <slot />
     </main>
     <footer>
@@ -80,6 +85,7 @@ const { title } = Astro.props;
     font-size: 1rem;
     font-weight: 300;
     opacity: 0.5;
+    color: white;
   }
   code {
     font-family:

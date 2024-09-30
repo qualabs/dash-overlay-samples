@@ -39,18 +39,18 @@ const { backgroundColor, bottom, right, title, icon, top, left, color, delay } =
       transform: scale(0.1);
       opacity: 0;
     }
-    10% {
+    100% {
       transform: scale(1);
       opacity: 1;
     }
-    90% {
+    /*     90% {
       transform: scale(1);
       opacity: 1;
     }
     100% {
       transform: scale(0.1);
       opacity: 0;
-    }
+    } */
   }
 
   .card-overlay {
@@ -62,7 +62,7 @@ const { backgroundColor, bottom, right, title, icon, top, left, color, delay } =
     display: grid;
     opacity: 0;
     transform: scale(0.1);
-    animation: pop 3s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    animation: pop 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 
     .card-overlay-title {
       display: flex;

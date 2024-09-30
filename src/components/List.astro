@@ -1,11 +1,43 @@
 ---
 const items = [
-  { id: 1, text: "Item 1", path: "/item-1" },
-  { id: 2, text: "Item 2", path: "/item-1" },
-  { id: 3, text: "Item 3", path: "/item-1" },
-  { id: 4, text: "Item 4", path: "/item-1" },
-  { id: 5, text: "Item 5", path: "/item-1" },
+  {
+    id: 1,
+    text: "IFRMAE",
+    path: "/iframe-overlay",
+    url: "https://placehold.co/320x180/grey/FFFFFF.png",
+  },
+  {
+    id: 2,
+    text: "Item 2",
+    path: "/item-1",
+    url: "https://placehold.co/320x180/grey/FFFFFF.png",
+  },
+  {
+    id: 3,
+    text: "Item 3",
+    path: "/item-1",
+    url: "https://placehold.co/320x180/grey/FFFFFF.png",
+  },
+  {
+    id: 4,
+    text: "Item 4",
+    path: "/item-1",
+    url: "https://placehold.co/320x180/grey/FFFFFF.png",
+  },
+  {
+    id: 5,
+    text: "Item 5",
+    path: "/item-1",
+    url: "https://placehold.co/320x180/grey/FFFFFF.png",
+  },
 ];
+
+interface Props {
+  title: string;
+  selected?: string;
+}
+
+const { title, selected } = Astro.props;
 ---
 
 <style>
@@ -59,6 +91,19 @@ const items = [
       z-index: 10;
       background: linear-gradient(0deg, transparent, #152b5d);
 
+      h2 {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 150%;
+        /* or 16px */
+        text-align: center;
+        letter-spacing: 0.37em;
+        text-transform: uppercase;
+        color: #ffffff;
+      }
+
       @media (min-width: 768px) {
         background: transparent;
       }
@@ -86,8 +131,9 @@ const items = [
         align-content: center;
         justify-content: center;
         text-align: center;
-
+        position: relative;
         transition: all 0.3s ease-in-out;
+        overflow: hidden;
 
         @supports (animation-timeline: view(y)) {
           animation: scale-up linear both;
@@ -107,7 +153,7 @@ const items = [
           margin: 0;
           font-size: 1rem;
           position: relative;
-          z-index: 0;
+          z-index: 1;
         }
 
         p {
@@ -115,28 +161,40 @@ const items = [
           font-size: 0.75rem;
           opacity: 0.9;
           position: relative;
+          z-index: 1;
+        }
 
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
           z-index: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0.8;
         }
       }
     }
   }
 </style>
 
-<div class="list-container">
+<div class="list-container" transition:name="list">
   <div class="header">
-    <h2>Samples</h2>
+    <h2>{title}</h2>
   </div>
   <ul class="list">
     {
-      items.map((item) => (
-        <li>
-          <a class="list-item" href={item.path}>
-            <h3>{item.text}</h3>
-            <p>{item.text}</p>
-          </a>
-        </li>
-      ))
+      items
+        .filter((item) => item.path != selected)
+        .map((item) => (
+          <li>
+            <a class="list-item" href={item.path}>
+              <img src={item.url} alt={item.text} />
+              <h3>{item.text}</h3>
+              <p>{item.text}</p>
+            </a>
+          </li>
+        ))
     }
   </ul>
 </div>

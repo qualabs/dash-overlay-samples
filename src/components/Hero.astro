@@ -11,7 +11,7 @@ import iframeIcon from "../assets/icons/iframe.svg";
 
 <div class="hero-container">
   <div class="hero-content">
-    <h1>
+    <h1 transition:animate="slide">
       Elevate Video Experiences with <strong>Dynamic Overlays!</strong>
     </h1>
     <p>
@@ -20,7 +20,7 @@ import iframeIcon from "../assets/icons/iframe.svg";
     </p>
   </div>
   <div class="hero-image">
-    <video id="video" class="video" controls></video>
+    <video transition:name="video" id="video" class="video" controls></video>
 
     <PopOverlay
       title="Image"
@@ -46,7 +46,7 @@ import iframeIcon from "../assets/icons/iframe.svg";
       right="0.5rem"
       backgroundColor="#D9E74C"
       color="#3E3E3E"
-      delay="4s"
+      delay="2s"
     >
       <video id="video" class="video" controls></video>
     </PopOverlay>
@@ -57,7 +57,7 @@ import iframeIcon from "../assets/icons/iframe.svg";
       left="0.5rem"
       backgroundColor="#D9E74C"
       color="#3E3E3E"
-      delay="7s"
+      delay="4s"
     >
       <Image src={qualabsAd} alt="Qualabs Ad" width="117" height="77" />
     </PopOverlay>
@@ -68,7 +68,7 @@ import iframeIcon from "../assets/icons/iframe.svg";
       right="0.5rem"
       backgroundColor="#D9E74C"
       color="#3E3E3E"
-      delay="10s"
+      delay="6s"
     >
       <Image src={countDown} alt="Qualabs Ad" width="117" height="77" />
     </PopOverlay>

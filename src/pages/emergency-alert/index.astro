@@ -5,9 +5,9 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
 
 <IFrameLayout title="Qualabs | Emergency Alert">
   <div class="container h-full flex flex-col justify-center items-center">
-    <EmergencyAlert 
-      title="Tornado Alert" 
-      message="The National Weather Service has issued a tornado warning for the area. Please take precautions and stay inside." 
+    <EmergencyAlert
+      title="National Weather Service: TORNADO WARNING in this area until 10:15 AM EST."
+      message="Take shelter now in a basement or an interior room on the lowest floor of a sturdy building. If you are outdoors, in a mobile home, or in a vehicle, move to the closest substantial shelter and protect yourself from flying debris. Check media."
     />
   </div>
 </IFrameLayout>
@@ -17,19 +17,19 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
     margin: 0 auto;
   }
 
-  .alert-container  {
+  .alert-container {
     border: 1px solid rgba(224, 204, 250, 100%);
-    background: rgba(49, 10, 101, 100%);  
+    background: rgba(49, 10, 101, 100%);
   }
 
   h1 {
     font-size: 2rem;
     font-weight: bold;
-    margin: 0; 
+    margin: 0;
     text-transform: uppercase;
   }
-  
+
   p {
     margin: 0;
-  } 
+  }
 </style>
