@@ -1,0 +1,37 @@
+---
+import IFrameLayout from "@layouts/IframeLayout.astro";
+---
+
+<IFrameLayout title="Qualabs | ASL Video">
+  <div class="asl-container">
+    <video id="asl-video" preload="auto" controls src="/bear-vp9a.webm"
+    ></video>
+  </div>
+</IFrameLayout>
+
+<style>
+  .asl-container {
+    width: 300px;
+    height: 200px;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+  }
+</style>
+
+<script>
+  window.addEventListener("message", function (event) {
+    var video = document.getElementById("asl-video");
+    var data = event.data;
+
+    console.log(data.event)
+    switch (data.event) {
+      case "playing":
+        video.play();
+        break;
+      case "paused":
+        video.pause();
+        break;
+    }
+  });
+</script>
