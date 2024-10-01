@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+
+import QualabsLogo from "@assets/qualabs.svg";
+
+---
+
+<div class="marquee-container">
+  <div class="marquee">
+    <span>
+      Developed by Qualabs
+    </span>
+    <Image src={QualabsLogo} alt="Qualabs Logo" height={20} class="logo"/>
+  </div>
+</div>
+
+<style>
+  .marquee-container {
+    display: block;
+    position: relative;
+    width: 100%;
+    background-color: white;
+  }
+  .marquee {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: auto;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+    transform: translateX(100%);
+    animation: scroll-left 15s linear infinite;
+
+    span {
+      font-size: 2vw;
+      text-transform: uppercase;
+      color: black;
+    }
+
+    img {
+      padding: 5px;
+      width: 12%;
+    }
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(100%);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

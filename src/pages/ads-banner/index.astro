@@ -1,0 +1,43 @@
+---
+import Marquee from "@components/Marquee.astro";
+import IFrameLayout from "@layouts/IframeLayout.astro";
+---
+
+<IFrameLayout title="Qualabs | ASL Video">
+  <div id="ad-overlay" class="ad-container">
+    <Marquee />
+  </div>
+</IFrameLayout>
+
+<style>
+  .ad-container {
+    width: 100%;
+    bottom: 20%;
+    position: absolute;
+    display: none;
+  }
+</style>
+
+<script>
+  let currentTime = 0
+
+  window.addEventListener("message", function (event) {
+    var data = event.data;
+
+    switch (data.event) {
+      case "timeupdate":
+        currentTime = data.currentTime;
+        break;
+    }
+
+    if (currentTime > 3 && currentTime < 30) {
+      console.log("show ad")
+      document.getElementById("ad-overlay").style.display = "block";
+    }
+
+    if (currentTime >= 30) {
+      console.log("hide ad")
+      document.getElementById("ad-overlay").style.display = "none";
+    }
+  });
+</script>

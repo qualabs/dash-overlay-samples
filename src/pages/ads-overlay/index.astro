@@ -1,0 +1,122 @@
+---
+import List from "@components/List.astro";
+import MainLayout from "@layouts/MainLayout.astro";
+
+const currentPath = Astro.url.pathname;
+---
+
+<MainLayout title="Qualabs | Ads Overlay Sample">
+  <main>
+    <h1 transition:animate="slide">Ads Overlay Example</h1>
+
+    <div class="video-container" id="videoContainer">
+      <video transition:name="video" id="main-video" preload="auto" controls
+      />
+      <div id="overlay">
+        <slot />
+      </div>
+      <div id="ttml-rendering-div"></div>
+    </div>
+
+    <div id="code-output"></div>
+  </main>
+  <List title="other demos" selected={currentPath} />
+</MainLayout>
+<style>
+  main {
+    padding: 1rem;
+
+    h1 {
+      font-size: 1.125rem;
+      font-weight: 400;
+      text-align: center;
+      padding-bottom: 1rem;
+    }
+
+    .video-container {
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+
+      video {
+        width: 100%;
+      }
+
+      .dash-video-player {
+        position: relative; /* This position relative is needed to position the menus */
+        margin: 0 auto;
+        line-height: 1;
+      }
+
+      #overlay {
+        position: absolute;
+        pointer-events: none;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        iframe {
+          width: 100%;
+          height: 100%;
+          margin: 0 auto;
+        }
+
+        video {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
+</style>
+
+<script class="code">
+  var CAPTION_URL = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+    $video,
+    player;
+
+  function init() {
+    var url = CAPTION_URL,
+      $TTMLRenderingDiv;
+
+    $video = document.querySelector("#main-video");
+    $TTMLRenderingDiv = document.querySelector("#ttml-rendering-div");
+    $OverlayRenderingDiv = document.querySelector("#overlay");
+
+    player = dashjs.MediaPlayer().create();
+    player.initialize($video, url, true);
+    player.attachTTMLRenderingDiv($TTMLRenderingDiv);
+    attachOverlayRenderingDiv($OverlayRenderingDiv);
+  }
+
+  function attachOverlayRenderingDiv(overlayElement) {
+    var overlayIframe = document.createElement("iframe");
+    overlayIframe.id = "iframe-overlay";
+    overlayIframe.src = "/ads-banner";
+    overlayIframe.frameBorder = 0;
+    overlayElement.appendChild(overlayIframe);
+
+    player.on(dashjs.MediaPlayer.events.PLAYBACK_TIME_UPDATED, function (e) {
+      sendMessageToIframe(overlayIframe, {
+        event: "timeupdate",
+        currentTime: e.time,
+      });
+    });
+  }
+
+  function sendMessageToIframe(iframe, message) {
+    console.log(message);
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage(message, "*");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    init();
+  });
+</script>
