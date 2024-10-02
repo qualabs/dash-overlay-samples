@@ -1,37 +1,5 @@
 ---
-const items = [
-  {
-    id: 1,
-    text: "IFRMAE",
-    path: "/iframe-overlay",
-    url: "https://placehold.co/320x180/grey/FFFFFF.png",
-  },
-  {
-    id: 2,
-    text: "Item 2",
-    path: "/item-1",
-    url: "https://placehold.co/320x180/grey/FFFFFF.png",
-  },
-  {
-    id: 3,
-    text: "Item 3",
-    path: "/item-1",
-    url: "https://placehold.co/320x180/grey/FFFFFF.png",
-  },
-  {
-    id: 4,
-    text: "Item 4",
-    path: "/item-1",
-    url: "https://placehold.co/320x180/grey/FFFFFF.png",
-  },
-  {
-    id: 5,
-    text: "Item 5",
-    path: "/item-1",
-    url: "https://placehold.co/320x180/grey/FFFFFF.png",
-  },
-];
-
+import items from "../utils/samples.json";
 interface Props {
   title: string;
   selected?: string;
@@ -81,7 +49,7 @@ const { title, selected } = Astro.props;
     padding: 0 1rem 2rem 1rem;
 
     @media (min-width: 768px) {
-      background: transparent;
+      padding: 0rem 4rem 2rem 4rem;
     }
 
     .header {
@@ -189,9 +157,9 @@ const { title, selected } = Astro.props;
         .map((item) => (
           <li>
             <a class="list-item" href={item.path}>
-              <img src={item.url} alt={item.text} />
-              <h3>{item.text}</h3>
-              <p>{item.text}</p>
+              <img src={item.url} alt={item.title} />
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
             </a>
           </li>
         ))

@@ -4,7 +4,7 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
 
 <IFrameLayout title="Qualabs | ASL Video">
   <div class="asl-container">
-    <video id="asl-video" preload="auto" src="/bear-vp9a.webm"
+    <video id="asl-video" preload="auto" loop src="/bear-vp9a.webm" autoplay
     ></video>
   </div>
 </IFrameLayout>
@@ -24,7 +24,6 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
     var video = document.getElementById("asl-video");
     var data = event.data;
 
-    console.log(data.event)
     switch (data.event) {
       case "playing":
         video.play();

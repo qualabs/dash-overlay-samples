@@ -1,42 +1,33 @@
 ---
-import MainLayout from "@layouts/MainLayout.astro";
+import SampleLayout from "@layouts/SampleLayout.astro";
 ---
 
-<MainLayout title="Qualabs | Video Overlay Sample">
-  <div class="container py-4">
-    <h3>Overlay Example</h3>
-  </div>
-  <div class="dash-video-player code">
-    <div class="videoContainer relative" id="videoContainer">
-      <video id="main-video" preload="auto" controls></video>
-      <div id="overlay"></div>
-      <div id="ttml-rendering-div"></div>
-    </div>
-  </div>
+<SampleLayout />
 
-  <div id="code-output"></div>
-  <footer class="pt-3 mt-4 border-top">&copy; DASH-IF</footer>
-</MainLayout>
+<style is:inline>
+  main {
+    .video-container {
+      #overlay {
+        position: absolute;
+        pointer-events: none;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        align-items: start;
+        justify-content: s;
 
-<style>
-  video {
-    width: 100%;
-  }
-
-  #overlay {
-    position: absolute;
-    pointer-events: none;
-    height: 100%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    video {
-      width: 100px;
-      top: 10px;
-      left: 10px;
-      position: absolute;
+        video {
+          width: 40% !important;
+          max-width: 160px;
+          height: auto;
+          top: 0.5rem;
+          right: 1rem;
+          position: absolute;
+          filter: drop-shadow(1px 1px 3px #222);
+        }
+      }
     }
   }
 
@@ -73,7 +64,7 @@ import MainLayout from "@layouts/MainLayout.astro";
     overlayVideo.id = "video-overlay";
     overlayVideo.loop = true;
     overlayVideo.autoplay = true;
-    overlayVideo.src = "bear-vp9a.webm";
+    overlayVideo.src = "http://127.0.0.1:5500/QualabsTransparent.webm";
     overlayElement.appendChild(overlayVideo);
 
     player.on(dashjs.MediaPlayer.events.PLAYBACK_PLAYING, function () {
@@ -84,8 +75,6 @@ import MainLayout from "@layouts/MainLayout.astro";
       overlayVideo.pause();
     });
   }
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    init();
-  });
+
+  init();
 </script>

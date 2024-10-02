@@ -1,70 +1,12 @@
 ---
-import MainLayout from "@layouts/MainLayout.astro";
+import SampleLayout from "@layouts/SampleLayout.astro";
 ---
 
-<MainLayout title="Qualabs | iframe Overlay Sample">
-  <main>
-    <h3>Overlay Example</h3>
-
-    <div class="videoContainer relative" id="videoContainer">
-      <video id="main-video" preload="auto" controls></video>
-      <div id="overlay">
-        <slot />
-      </div>
-      <div id="ttml-rendering-div"></div>
-    </div>
-
-    <div id="code-output"></div>
-  </main>
-</MainLayout>
-<style>
-  video {
-    width: 100%;
-  }
-
-  #overlay {
-    position: absolute;
-    pointer-events: none;
-    height: 100%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      margin: 0 auto;
-
-      body {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-
-  #overlay video,
-  #overlay iframe {
-    height: 100%;
-    width: 100%;
-  }
-
-  .dash-video-player {
-    position: relative; /* This position relative is needed to position the menus */
-    margin: 0 auto;
-    line-height: 1;
-  }
-</style>
+<SampleLayout />
 
 <script class="code">
-  var CAPTION_URL = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
-    $video,
-    player;
-
-  var CAPTION_URL = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+  var CAPTION_URL =
+      "https://d1lytwcb2ho7l3.cloudfront.net/news/dash/output.mpd",
     video,
     player;
 
@@ -111,7 +53,6 @@ import MainLayout from "@layouts/MainLayout.astro";
       iframe.contentWindow.postMessage(message, "*");
     }
   }
-  document.addEventListener("DOMContentLoaded", function () {
-    init();
-  });
+
+  init();
 </script>

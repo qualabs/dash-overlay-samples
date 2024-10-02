@@ -1,84 +1,8 @@
 ---
-import List from "@components/List.astro";
-import MainLayout from "@layouts/MainLayout.astro";
-
-const currentPath = Astro.url.pathname;
-
-console.log(currentPath);
+import SampleLayout from "@layouts/SampleLayout.astro";
 ---
 
-<MainLayout title="Qualabs | iframe Overlay Sample">
-  <main>
-    <h1 transition:animate="slide">Overlay Example</h1>
-
-    <div class="video-container">
-      <video transition:name="video" id="main-video" preload="auto" controls
-      ></video>
-      <div id="overlay">
-        <slot />
-      </div>
-      <div id="ttml-rendering-div"></div>
-    </div>
-    <div id="code-output"></div>
-  </main>
-  <List title="other demos" selected={currentPath} />
-</MainLayout>
-<style>
-  main {
-    padding: 1rem;
-    h1 {
-      font-size: 1.125rem;
-      font-weight: 400;
-      text-align: center;
-      padding-bottom: 1rem;
-    }
-
-    .video-container {
-      aspect-ratio: 16 / 9;
-      position: relative;
-      overflow: hidden;
-
-      video {
-        width: 100%;
-        border-radius: 0.5rem;
-      }
-      .dash-video-player {
-        position: relative; /* This position relative is needed to position the menus */
-        margin: 0 auto;
-        line-height: 1;
-      }
-
-      #overlay {
-        position: absolute;
-        pointer-events: none;
-        height: 100%;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 0;
-        iframe {
-          width: 100%;
-          height: 100%;
-          margin: 0 auto;
-
-          body {
-            width: 100%;
-            height: 100%;
-          }
-        }
-
-        video {
-          height: 100%;
-          width: 100%;
-        }
-      }
-    }
-  }
-</style>
+<SampleLayout />
 
 <script class="code">
   var CAPTION_URL = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
@@ -131,7 +55,6 @@ console.log(currentPath);
       iframe.contentWindow.postMessage(message, "*");
     }
   }
-  document.addEventListener("DOMContentLoaded", function () {
-    init();
-  });
+
+  init();
 </script>

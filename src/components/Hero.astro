@@ -20,7 +20,13 @@ import iframeIcon from "../assets/icons/iframe.svg";
     </p>
   </div>
   <div class="hero-image">
-    <video transition:name="video" id="video" class="video" controls></video>
+    <video
+      transition:name="video"
+      id="video"
+      class="video"
+      autoplay
+      controls
+      src="https://d1lytwcb2ho7l3.cloudfront.net/rocket/rocket.mp4"></video>
 
     <PopOverlay
       title="Image"
@@ -48,7 +54,13 @@ import iframeIcon from "../assets/icons/iframe.svg";
       color="#3E3E3E"
       delay="2s"
     >
-      <video id="video" class="video" controls></video>
+      <video
+        id="video"
+        class="video"
+        controls
+        autoplay
+        src="https://d1lytwcb2ho7l3.cloudfront.net/reporter/reporter.mp4"
+      ></video>
     </PopOverlay>
     <PopOverlay
       title="Image"
@@ -114,7 +126,7 @@ import iframeIcon from "../assets/icons/iframe.svg";
       }
       .hero-image {
         position: relative;
-        video {
+        > video {
           aspect-ratio: 16 / 9;
           width: 100%;
           border-radius: 0.5rem;
@@ -124,9 +136,9 @@ import iframeIcon from "../assets/icons/iframe.svg";
       @media (min-width: 768px) {
         grid-template-columns: 1fr 1fr;
         align-items: center;
+        padding: 2rem 4rem;
 
         .hero-content {
-          padding: 3rem;
           h1 {
             font-size: 2.5rem;
             line-height: 120%;
