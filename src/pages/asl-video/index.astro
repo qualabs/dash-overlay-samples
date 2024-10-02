@@ -4,22 +4,42 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
 
 <IFrameLayout title="Qualabs | ASL Video">
   <div class="asl-container">
-    <video id="asl-video" preload="auto" loop src="/bear-vp9a.webm" autoplay
-    ></video>
+    <video id="asl-video" preload="auto" loop autoplay></video>
+    <div id="ttml-rendering-div"></div>
   </div>
 </IFrameLayout>
 
 <style>
   .asl-container {
     width: 300px;
-    height: 200px;
+    height: auto;
+    aspect-ratio: 16/9;
     bottom: 0;
     right: 0;
     position: absolute;
   }
 </style>
 
+<script is:inline src="https://cdn.dashjs.org/v3.1.0/dash.all.min.js"></script>
+
 <script>
+  var CAPTION_URL =
+      "https://d1lytwcb2ho7l3.cloudfront.net/asl_1080x1080/dash/output.mpd",
+    $video,
+    player;
+
+  function init() {
+    var url = CAPTION_URL,
+      $TTMLRenderingDiv;
+
+    $video = document.querySelector("#asl-video");
+    $TTMLRenderingDiv = document.querySelector("#ttml-rendering-div");
+
+    player = dashjs.MediaPlayer().create();
+    player.initialize($video, url, true);
+    player.attachTTMLRenderingDiv($TTMLRenderingDiv);
+  }
+
   window.addEventListener("message", function (event) {
     var video = document.getElementById("asl-video");
     var data = event.data;
@@ -33,4 +53,6 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
         break;
     }
   });
+
+  init();
 </script>
