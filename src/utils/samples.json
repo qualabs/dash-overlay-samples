@@ -16,5 +16,11 @@
     "description": "Make your brand stand out with a logo overlay on your videos! Perfect for promos and presentations.",
     "path": "/video-overlay",
     "url": "https://placehold.co/320x180/black/grey.png"
+  },
+  {
+    "title": "Ads Overlay",
+    "description": "Monetize your content seamlessly by displaying ads directly over your videos.",
+    "path": "/ads-overlay",
+    "url": "https://placehold.co/320x180/black/grey.png"
   }
 ]
