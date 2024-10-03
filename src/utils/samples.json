@@ -22,5 +22,11 @@
     "description": "Monetize your content seamlessly by displaying ads directly over your videos.",
     "path": "/ads-overlay",
     "url": "https://placehold.co/320x180/black/grey.png"
+  },
+  {
+    "title": "Interactive Overlay",
+    "description": "Add interactive elements to your videos and expand the possibilities with clickable overlays.",
+    "path": "/interactive-overlay",
+    "url": "https://placehold.co/320x180/black/grey.png"
   }
 ]

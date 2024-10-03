@@ -1,8 +1,9 @@
 ---
+import Counter from "@components/Counter.astro";
 import SampleLayout from "@layouts/SampleLayout.astro";
 ---
 
-<SampleLayout />
+<SampleLayout/>
 
 <script class="code">
   var CAPTION_URL = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
@@ -17,6 +18,11 @@ import SampleLayout from "@layouts/SampleLayout.astro";
     $TTMLRenderingDiv = document.querySelector("#ttml-rendering-div");
     $OverlayRenderingDiv = document.querySelector("#overlay");
 
+    $video.addEventListener("click", function (e) {
+      e.stopImmediatePropagation();
+      e.stopPropagation();
+    });
+
     player = dashjs.MediaPlayer().create();
     player.initialize($video, url, true);
     player.attachTTMLRenderingDiv($TTMLRenderingDiv);
@@ -26,7 +32,7 @@ import SampleLayout from "@layouts/SampleLayout.astro";
   function attachOverlayRenderingDiv(overlayElement) {
     var overlayIframe = document.createElement("iframe");
     overlayIframe.id = "iframe-overlay";
-    overlayIframe.src = "/ads-banner";
+    overlayIframe.src = "/score-counter";
     overlayIframe.frameBorder = 0;
     overlayElement.appendChild(overlayIframe);
 
