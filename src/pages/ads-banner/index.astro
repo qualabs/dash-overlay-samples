@@ -10,16 +10,27 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
 </IFrameLayout>
 
 <style>
+  body {
+    overflow: hidden;
+  }
   .ad-container {
     width: 100%;
-    bottom: 20%;
+    transition: all ease-in-out 2s;
     position: absolute;
-    display: none;
+    bottom: 0;
+    transform: translateX(100%);
+
+    &.shown {
+      transform: translateX(10%);
+    }
+    &.hidden {
+      transform: translateX(100%);
+    }
   }
 </style>
 
 <script>
-  let currentTime = 0
+  let currentTime = 0;
 
   window.addEventListener("message", function (event) {
     var data = event.data;
@@ -30,14 +41,14 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
         break;
     }
 
-    if (currentTime > 3 && currentTime < 30) {
-      console.log("show ad")
-      document.getElementById("ad-overlay").style.display = "block";
+    if (currentTime > 3 && currentTime < 20) {
+      document.getElementById("ad-overlay").classList.add("shown");
+      document.getElementById("ad-overlay").classList.remove("hide");
     }
 
-    if (currentTime >= 30) {
-      console.log("hide ad")
-      document.getElementById("ad-overlay").style.display = "none";
+    if (currentTime >= 20) {
+      document.getElementById("ad-overlay").classList.remove("shown");
+      document.getElementById("ad-overlay").classList.add("hide");
     }
   });
 </script>

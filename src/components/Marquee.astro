@@ -2,15 +2,13 @@
 import { Image } from "astro:assets";
 
 import QualabsLogo from "@assets/qualabs.svg";
-
+import QualabsText from "@assets/qualabs-text.svg";
 ---
 
 <div class="marquee-container">
   <div class="marquee">
-    <span>
-      Developed by Qualabs
-    </span>
-    <Image src={QualabsLogo} alt="Qualabs Logo" height={20} class="logo"/>
+    <img src={QualabsLogo.src} alt="Qualabs Logo" />
+    <img src={QualabsText.src} alt="Qualabs Text" />
   </div>
 </div>
 
@@ -19,18 +17,24 @@ import QualabsLogo from "@assets/qualabs.svg";
     display: block;
     position: relative;
     width: 100%;
-    background-color: white;
+    overflow: hidden;
+    padding: 1rem 0 1rem 1rem;
   }
   .marquee {
     display: flex;
     align-items: center;
     gap: 1rem;
-    width: auto;
-    height: 100%;
+    width: max-content;
     margin: 0;
     text-align: center;
-    transform: translateX(100%);
-    animation: scroll-left 15s linear infinite;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.89);
+    border: 1px solid #ffffff;
+    backdrop-filter: blur(7px);
+    width: 100%;
+    box-shadow: 0px 4px 1rem rgba(0, 0, 0, 0.25);
+    border-radius: 0.2rem;
+    overflow: hidden;
 
     span {
       font-size: 2vw;
@@ -39,18 +43,13 @@ import QualabsLogo from "@assets/qualabs.svg";
     }
 
     img {
-      padding: 5px;
-      width: 12%;
-    }
-  }
+      &:nth-child(1) {
+        height: 100%;
+      }
 
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(100%);
-    }
-
-    100% {
-      transform: translateX(-50%);
+      &:nth-child(2) {
+        width: 50%;
+      }
     }
   }
 </style>

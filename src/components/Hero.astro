@@ -25,7 +25,8 @@ import iframeIcon from "../assets/icons/iframe.svg";
       id="video"
       class="video"
       autoplay
-      controls
+      muted
+      loop
       src="https://d1lytwcb2ho7l3.cloudfront.net/rocket/rocket.mp4"></video>
 
     <PopOverlay
@@ -37,13 +38,7 @@ import iframeIcon from "../assets/icons/iframe.svg";
       color="#3E3E3E"
       delay="1s"
     >
-      <Image
-        src={rocket}
-        alt="Qualabs Ad"
-        width="117"
-        height="77"
-        style="padding: 0.35rem;"
-      />
+      <img src={rocket.src} alt="Fake Logo" class="logo-image" />
     </PopOverlay>
     <PopOverlay
       title="PIP Video"
@@ -56,9 +51,10 @@ import iframeIcon from "../assets/icons/iframe.svg";
     >
       <video
         id="video"
-        class="video"
-        controls
+        class="video-pip"
+        loop
         autoplay
+        muted
         src="https://d1lytwcb2ho7l3.cloudfront.net/reporter/reporter.mp4"
       ></video>
     </PopOverlay>
@@ -71,7 +67,7 @@ import iframeIcon from "../assets/icons/iframe.svg";
       color="#3E3E3E"
       delay="4s"
     >
-      <Image src={qualabsAd} alt="Qualabs Ad" width="117" height="77" />
+      <img src={qualabsAd.src} alt="Qualabs Ad" class="qualabs-ad-image" />
     </PopOverlay>
     <PopOverlay
       title="Image"
@@ -82,7 +78,7 @@ import iframeIcon from "../assets/icons/iframe.svg";
       color="#3E3E3E"
       delay="6s"
     >
-      <Image src={countDown} alt="Qualabs Ad" width="117" height="77" />
+      <img src={countDown.src} alt="countdown image" class="countdown-image" />
     </PopOverlay>
   </div>
 
@@ -126,10 +122,33 @@ import iframeIcon from "../assets/icons/iframe.svg";
       }
       .hero-image {
         position: relative;
+        /*     transform: perspective(900px) rotateX(13deg) rotateY(339deg)
+          rotateZ(3deg) scale(1.03); */
         > video {
           aspect-ratio: 16 / 9;
           width: 100%;
           border-radius: 0.5rem;
+        }
+
+        .qualabs-ad-image {
+          width: 120px;
+        }
+
+        .countdown-image {
+          width: 90px;
+        }
+
+        .video-pip {
+          max-width: 120px;
+          height: auto;
+          aspect-ratio: 6 / 3;
+          object-fit: cover;
+          object-position: top;
+        }
+
+        .logo-image {
+          width: 90px;
+          padding: 0.35rem;
         }
       }
 
@@ -149,6 +168,29 @@ import iframeIcon from "../assets/icons/iframe.svg";
             width: 50%;
             text-align: left;
             font-size: 1rem;
+          }
+        }
+
+        .hero-image {
+          .qualabs-ad-image {
+            width: 190px;
+          }
+
+          .countdown-image {
+            width: 150px;
+          }
+
+          .video-pip {
+            max-width: 220px;
+            height: auto;
+            aspect-ratio: 6 / 3;
+            object-fit: cover;
+            object-position: top;
+          }
+
+          .logo-image {
+            width: 120px;
+            padding: 0.35rem;
           }
         }
       }

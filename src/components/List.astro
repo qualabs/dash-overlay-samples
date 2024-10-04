@@ -11,7 +11,7 @@ const { title, selected } = Astro.props;
 <style>
   @keyframes scale-up {
     0% {
-      opacity: 0;
+      /*opacity: 0;*/
       transform: translateY(-90%) scale(0.7);
       z-index: -1;
     }
@@ -25,12 +25,13 @@ const { title, selected } = Astro.props;
 
     30%,
     70% {
-      z-index: 1;
+      z-index: 5;
     }
     100% {
       transform: translateY(90%) scale(0.7);
       z-index: -1;
-      opacity: 0;
+
+      /*opacity: 0;*/
     }
   }
 
@@ -50,6 +51,7 @@ const { title, selected } = Astro.props;
 
     @media (min-width: 768px) {
       padding: 0rem 4rem 2rem 4rem;
+      border-radius: 0.5rem;
     }
 
     .header {
@@ -89,19 +91,16 @@ const { title, selected } = Astro.props;
       }
 
       .list-item {
-        padding: 1rem;
+        padding-bottom: 1rem;
         width: 100%;
-        aspect-ratio: 16 / 9;
-        background: black;
         height: auto;
-        border-radius: 0.33rem;
         display: grid;
-        align-content: center;
-        justify-content: center;
-        text-align: center;
+
+        background-color: #152b5d;
         position: relative;
         transition: all 0.3s ease-in-out;
         overflow: hidden;
+        z-index: 1;
 
         @supports (animation-timeline: view(y)) {
           animation: scale-up linear both;
@@ -113,33 +112,43 @@ const { title, selected } = Astro.props;
 
           &:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 2rem rgba(255, 255, 255, 0.06);
+
+            img {
+              box-shadow: 0 0 2rem rgba(255, 255, 255, 0.06);
+            }
           }
         }
 
-        h3 {
-          margin: 0;
-          font-size: 1rem;
-          position: relative;
-          z-index: 1;
-        }
-
-        p {
-          margin: 0;
-          font-size: 0.75rem;
-          opacity: 0.9;
-          position: relative;
-          z-index: 1;
-        }
-
         img {
-          position: absolute;
-          top: 0;
-          left: 0;
           z-index: 0;
           width: 100%;
-          height: 100%;
-          opacity: 0.8;
+          height: auto;
+          aspect-ratio: 16 / 9;
+          border-radius: 0.33rem;
+        }
+
+        .item-text {
+          padding-top: 1rem;
+          display: grid;
+          gap: 0.2rem;
+
+          z-index: 2;
+          position: relative;
+
+          h3 {
+            margin: 0;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+          }
+
+          p {
+            margin: 0;
+            font-size: 0.75rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+          }
         }
       }
     }
@@ -156,10 +165,14 @@ const { title, selected } = Astro.props;
         .filter((item) => item.path != selected)
         .map((item) => (
           <li>
-            <a class="list-item" href={item.path}>
-              <img src={item.url} alt={item.title} />
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
+            <a href={item.path} class="list-item" data-astro-reload>
+              <div>
+                <img src={item.url} alt={item.title} />
+              </div>
+              <div class="item-text">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
             </a>
           </li>
         ))

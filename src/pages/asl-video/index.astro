@@ -1,22 +1,29 @@
 ---
-import IFrameLayout from "@layouts/IframeLayout.astro";
+import IFrameLayout from "@layouts/IFrameLayout.astro";
 ---
 
 <IFrameLayout title="Qualabs | ASL Video">
   <div class="asl-container">
-    <video id="asl-video" preload="auto" loop autoplay></video>
+    <video id="asl-video" preload="auto" loop autoplay muted></video>
     <div id="ttml-rendering-div"></div>
   </div>
 </IFrameLayout>
 
 <style>
   .asl-container {
-    width: 300px;
+    width: 35%;
     height: auto;
-    aspect-ratio: 16/9;
     bottom: 0;
     right: 0;
     position: absolute;
+
+    :hover {
+      background-color: aquamarine;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 30%;
+    }
   }
 </style>
 
@@ -24,7 +31,7 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
 
 <script>
   var CAPTION_URL =
-      "https://d1lytwcb2ho7l3.cloudfront.net/asl_1080x1080/dash/output.mpd",
+      "https://d1lytwcb2ho7l3.cloudfront.net/asl_1920x1080/dash/output.mpd",
     $video,
     player;
 

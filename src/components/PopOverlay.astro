@@ -56,7 +56,6 @@ const { backgroundColor, bottom, right, title, icon, top, left, color, delay } =
   .card-overlay {
     border: 2px solid rgb(61, 88, 79);
     width: max-content;
-    min-width: 120px;
     border-radius: 0.25rem;
     overflow: hidden;
     display: grid;
@@ -84,8 +83,12 @@ const { backgroundColor, bottom, right, title, icon, top, left, color, delay } =
       justify-content: center;
 
       video {
-        max-width: 140px;
-        height: auto;
+        &::-webkit-media-controls-enclosure {
+          display: none;
+        }
+        &::-webkit-media-controls-panel {
+          display: none;
+        }
       }
     }
   }

@@ -5,7 +5,8 @@ import SampleLayout from "@layouts/SampleLayout.astro";
 <SampleLayout />
 
 <script class="code">
-  var CAPTION_URL = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+  var CAPTION_URL =
+      "https://d1lytwcb2ho7l3.cloudfront.net/trailer/dash/output.mpd",
     $video,
     player;
 
@@ -39,7 +40,6 @@ import SampleLayout from "@layouts/SampleLayout.astro";
   }
 
   function sendMessageToIframe(iframe, message) {
-    console.log(message);
     if (iframe && iframe.contentWindow) {
       iframe.contentWindow.postMessage(message, "*");
     }

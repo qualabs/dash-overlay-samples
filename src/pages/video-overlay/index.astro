@@ -25,7 +25,7 @@ import SampleLayout from "@layouts/SampleLayout.astro";
           top: 0.5rem;
           right: 1rem;
           position: absolute;
-          filter: drop-shadow(1px 1px 3px #222);
+          filter: drop-shadow(#000 1px 0 10px);
         }
       }
     }
@@ -39,7 +39,8 @@ import SampleLayout from "@layouts/SampleLayout.astro";
 </style>
 
 <script class="code">
-  var CAPTION_URL = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+  var CAPTION_URL =
+      "https://rdmedia.bbc.co.uk/bbb/2/client_manifest-common_init.mpd",
     video,
     player;
 
@@ -64,7 +65,8 @@ import SampleLayout from "@layouts/SampleLayout.astro";
     overlayVideo.id = "video-overlay";
     overlayVideo.loop = true;
     overlayVideo.autoplay = true;
-    overlayVideo.src = "http://127.0.0.1:5500/QualabsTransparent.webm";
+    overlayVideo.src =
+      "https://d1lytwcb2ho7l3.cloudfront.net/qualabs-transparent/QualabsTransparent.webm";
     overlayElement.appendChild(overlayVideo);
 
     player.on(dashjs.MediaPlayer.events.PLAYBACK_PLAYING, function () {
@@ -75,6 +77,9 @@ import SampleLayout from "@layouts/SampleLayout.astro";
       overlayVideo.pause();
     });
   }
-
   init();
+
+  document.addEventListener("astro:before-preparation", () => {
+    init();
+  });
 </script>
