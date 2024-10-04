@@ -30,7 +30,7 @@ import SampleLayout from "@layouts/SampleLayout.astro";
   function attachOverlayRenderingDiv(overlayElement) {
     var $overlayIframe = document.createElement("iframe");
     $overlayIframe.id = "iframe-overlay";
-    $overlayIframe.src = "/emergency-alert";
+    $overlayIframe.src = "iframe-overlay/emergency-alert";
     $overlayIframe.frameBorder = 0;
     overlayElement.appendChild($overlayIframe);
 
