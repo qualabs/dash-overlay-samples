@@ -3,7 +3,7 @@ import Counter from '@components/Counter.astro';
 import IFrameLayout from "@layouts/IframeLayout.astro";
 ---
 
-<IFrameLayout title="Qualabs | ASL Video">
+<IFrameLayout title="Qualabs | Score Counter">
   <div id="score-overlay" class="score-container">
     <Counter />
   </div>
@@ -12,6 +12,9 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
 <style>
   .score-container {
     width: 100%;
+    top: 5%;
+    left: 5%;
+    position: absolute;
   }
 </style>
 
