@@ -12,7 +12,7 @@ const currentItem = items.find((item) => item.path === currentPath);
 <MainLayout title={`${currentItem.title}`}>
   <main>
     <div class="video-container">
-      <video id="main-video" preload="auto" loop autoplay muted></video>
+      <video id="main-video" preload="auto" loop autoplay muted controls></video>
       <div id="overlay">
         <slot />
       </div>
