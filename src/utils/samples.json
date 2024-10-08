@@ -28,5 +28,11 @@
     "description": "Add interactive elements to your videos and expand the possibilities with clickable overlays.",
     "path": "/interactive-overlay",
     "url": "https://placehold.co/320x180/black/grey.png"
+  },
+  {
+    "title": "Picture-in-Picture Sports Match Overlay",
+    "description": "",
+    "path": "/pip-match-overlay",
+    "url": "https://placehold.co/320x180/black/grey.png"
   }
 ]
