@@ -5,6 +5,7 @@ import MainLayout from "@layouts/MainLayout.astro";
 const currentPath = Astro.url.pathname;
 
 import items from "../utils/samples.json";
+import Controls from "@components/Controls.astro";
 
 const currentItem = items.find((item) => item.path === currentPath);
 ---
@@ -12,7 +13,8 @@ const currentItem = items.find((item) => item.path === currentPath);
 <MainLayout title={`${currentItem.title}`}>
   <main>
     <div class="video-container">
-      <video id="main-video" preload="auto" loop autoplay muted controls></video>
+      <Controls />
+      <video id="main-video" preload="auto" loop autoplay muted></video>
       <div id="overlay">
         <slot />
       </div>
