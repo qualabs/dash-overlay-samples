@@ -1,5 +1,5 @@
 ---
-import items from "../utils/samples.json";
+import { samples } from "../utils/samples";
 interface Props {
   title: string;
   selected?: string;
@@ -161,7 +161,7 @@ const { title, selected } = Astro.props;
   </div>
   <ul class="list">
     {
-      items
+      samples
         .filter((item) => item.path != selected)
         .map((item) => (
           <li>

@@ -1,25 +1,16 @@
 ---
-import Counter from '@components/Counter.astro';
+import Counter from "@components/Counter.astro";
 import IFrameLayout from "@layouts/IframeLayout.astro";
 ---
 
 <IFrameLayout title="Qualabs | Score Counter">
-  <div id="score-overlay" class="score-container">
+  <div>
     <Counter />
   </div>
 </IFrameLayout>
 
-<style>
-  .score-container {
-    width: 100%;
-    top: 5%;
-    left: 5%;
-    position: absolute;
-  }
-</style>
-
 <script>
-  let currentTime = 0
+  let currentTime = 0;
 
   window.addEventListener("message", function (event) {
     var data = event.data;

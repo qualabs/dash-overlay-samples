@@ -4,6 +4,17 @@ import SampleLayout from "@layouts/SampleLayout.astro";
 
 <SampleLayout />
 
+<style is:inline>
+  main {
+    .interactive {
+      pointer-events: auto !important;
+      z-index: -1;
+      &:hover {
+      }
+    }
+  }
+</style>
+
 <script class="code">
   var CAPTION_URL = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
     $video,
@@ -26,6 +37,7 @@ import SampleLayout from "@layouts/SampleLayout.astro";
   function attachOverlayRenderingDiv(overlayElement) {
     var overlayIframe = document.createElement("iframe");
     overlayIframe.id = "iframe-overlay";
+    overlayIframe.classList.add("interactive");
     overlayIframe.src = "interactive-overlay/score-counter";
     overlayIframe.frameBorder = 0;
     overlayElement.appendChild(overlayIframe);

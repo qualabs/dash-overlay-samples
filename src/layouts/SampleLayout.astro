@@ -3,123 +3,313 @@ import List from "@components/List.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 
 const currentPath = Astro.url.pathname;
+import hljs from "highlight.js";
+import { samples } from "src/utils/samples";
 
-import items from "../utils/samples.json";
 import Controls from "@components/Controls.astro";
+const currentItem = samples.find((item) => item.path === currentPath);
 
-const currentItem = items.find((item) => item.path === currentPath);
+const tabs = [
+  { id: "tab1", title: "Tab 1", content: "Content for Tab 1" },
+  { id: "tab2", title: "Tab 2", content: "Content for Tab 2" },
+  { id: "tab3", title: "Tab 3", content: "Content for Tab 3" },
+];
+
+let activeTab = tabs[0].id;
 ---
 
 <MainLayout title={`${currentItem.title}`}>
   <main>
-    <div class="video-container">
-      <Controls />
-      <video id="main-video" preload="auto" loop autoplay muted></video>
-      <div id="overlay">
-        <slot />
-      </div>
-      <div id="ttml-rendering-div"></div>
-    </div>
     <div class="title-container">
       <h1 transition:animate="slide">{currentItem.title}</h1>
       <p transition:animate="slide">{currentItem.description}</p>
     </div>
+    <div class="tabs">
+      <div class="tab-titles" transition:animate="slide">
+        <button class="tab-title" data-tab="sample"> Sample </button>
+        <button class="tab-title" data-tab="manifest-code"> Manifest </button>
+      </div>
 
-    <div id="code-output"></div>
+      <div class="tab-content">
+        <div class="tab" id="sample">
+          <div class="video-container">
+            <Controls />
+            <video id="main-video" preload="auto" loop autoplay muted> </video>
+            <div id="overlay">
+              <slot />
+            </div>
+            <div id="ttml-rendering-div"></div>
+          </div>
+        </div>
+        <div class="tab" id="manifest-code">
+          <pre
+            lang="xml">
+            <code class="language-xml">
+            {currentItem.mpd}
+            </code>
+          </pre>
+        </div>
+      </div>
+    </div>
+    <List title="other demos" selected={currentPath} />
   </main>
-  <List title="other demos" selected={currentPath} />
-</MainLayout>
-<style>
-  main {
-    padding: 1rem;
-
-    @media (min-width: 768px) {
-      padding: 1rem 4rem;
-    }
-
-    .title-container {
-      display: grid;
-      gap: 0.5rem;
-      padding: 1rem 0px 0.5rem 0px;
-      h1 {
-        font-size: 1rem;
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 600;
-        color: #ffffff;
-
-        @media (min-width: 768px) {
-          font-size: 1.5rem;
-        }
+  <style>
+    main {
+      @media (min-width: 768px) {
+        padding: 1rem 4rem;
       }
 
-      p {
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 300;
-        font-size: 0.75rem;
-        line-height: 120%;
-        color: rgba(255, 255, 255, 0.8);
-        @media (min-width: 768px) {
+      .title-container {
+        display: grid;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        justify-items: center;
+
+        @media screen and (min-width: 768px) {
+          justify-items: start;
+        }
+        h1 {
           font-size: 1rem;
-        }
-      }
-    }
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 600;
+          color: #ffffff;
 
-    .video-container {
-      position: relative;
-      overflow: hidden;
-      border-radius: 0.5rem;
-
-      > video {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        background: black;
-
-        &::-webkit-media-controls-enclosure {
-        }
-        &::-webkit-media-controls-panel {
-        }
-      }
-
-      .dash-video-player {
-        position: relative; /* This position relative is needed to position the menus */
-        margin: 0 auto;
-        line-height: 1;
-      }
-
-      #overlay {
-        position: absolute;
-        pointer-events: none;
-        height: 100%;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 0;
-        overflow: hidden;
-
-        iframe {
-          width: 100%;
-          height: 100%;
-          margin: 0 auto;
-          pointer-events: auto;
-
-          body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+          @media (min-width: 768px) {
+            font-size: 1.5rem;
           }
         }
 
-        video {
+        p {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 300;
+          font-size: 0.75rem;
+          line-height: 120%;
+          color: rgba(255, 255, 255, 0.8);
+          text-align: center;
+          @media (min-width: 768px) {
+            font-size: 1rem;
+          }
+        }
+      }
+
+      .video-container {
+        position: relative;
+
+        > video {
           width: 100%;
+          aspect-ratio: 16 / 9;
+          background: black;
+          border-radius: 0.5rem;
+          &::-webkit-media-controls-timeline,
+          &::-webkit-media-controls-volume-slider,
+          &::-webkit-media-controls-mute-button,
+          &::-webkit-media-controls-fullscreen-button {
+            display: none;
+          }
+
+          &::-webkit-media-controls-enclosure {
+          }
+          &::-webkit-media-controls-panel {
+            background-color: transparent;
+            color: white;
+          }
+        }
+
+        .dash-video-player {
+          position: relative; /* This position relative is needed to position the menus */
+          margin: 0 auto;
+          line-height: 1;
+        }
+
+        #overlay {
+          position: absolute;
+          pointer-events: none;
+          height: 100%;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 0;
+
+          iframe {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            pointer-events: none;
+          }
+
+          video {
+            width: 100%;
+          }
         }
       }
     }
-  }
-</style>
-<script is:inline src="https://cdn.dashjs.org/v3.1.0/dash.all.min.js"></script>
+    .tabs {
+      padding: 0.5rem;
+      position: relative;
+      background: #080b36;
+      z-index: 2;
+
+      @media screen and (min-width: 768px) {
+        padding: 1rem 0;
+      }
+    }
+    .tab-titles {
+      display: flex;
+      width: max-content;
+      margin: 0 auto;
+      background: #152b5d;
+      border-radius: 0.5rem;
+      padding: 0.25rem;
+
+      @media (min-width: 768px) {
+        margin: 0;
+      }
+    }
+    .tab-title {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 0.8rem;
+      line-height: 100%;
+      color: #ffffffc0;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+    }
+    .tab-title.active {
+      font-weight: bold;
+      background-color: #0066ff;
+      color: #ffffff;
+    }
+    .tab-content {
+      padding-top: 0.7rem;
+
+      .tag {
+        color: #0077aa;
+      }
+      .attribute {
+        color: #d70075;
+      }
+      .value {
+        color: #d37f00;
+      }
+    }
+    .tab {
+      opacity: 0;
+      transition: all 0.3s ease;
+      transform: translateX(-10%);
+      display: none;
+
+      pre {
+        display: grid;
+        code {
+          font-size: 0.8rem;
+          color: white;
+          background: #101b38;
+          border-radius: 0.5rem;
+          overflow: auto;
+          padding: 0;
+          margin: 0;
+          tab-size: 0;
+
+          &::-webkit-scrollbar {
+            width: 0.5rem; /* Width of the scrollbar */
+            height: 0.5rem; /* Width of the scrollbar */
+            background-color: transparent; /* Background color of the scrollbar track */
+          }
+
+          /* For the scrollbar thumb */
+          &::-webkit-scrollbar-thumb {
+            background-color: rgba(
+              255,
+              255,
+              255,
+              0.5
+            ); /* Color of the scrollbar thumb */
+            border-radius: 5px; /* Rounded corners of the scrollbar thumb */
+          }
+
+          /* For the scrollbar track (the area behind the thumb) */
+          &::-webkit-scrollbar-track {
+            background-color: transparent; /* Background color of the scrollbar track */
+          }
+
+          .hljs-string,
+          .hljs-section,
+          .hljs-selector-class,
+          .hljs-template-variable,
+          .hljs-deletion {
+            color: #98c379;
+          }
+
+          .hljs,
+          .hljs-tag,
+          .hljs-punctuation {
+            color: #e06c75;
+          }
+
+          .hljs-tag .hljs-name,
+          .hljs-tag {
+            color: #e06c75;
+          }
+          .hljs-attr {
+            color: #d19a66;
+          }
+        }
+      }
+    }
+    .tab.active {
+      display: block;
+      animation: appearAndGrow 0.3s ease forwards;
+    }
+
+    @keyframes appearAndGrow {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+
+  <script is:inline src="https://cdn.dashjs.org/v3.1.0/dash.all.min.js"
+  ></script>
+
+  <script>
+    import hljs from "highlight.js";
+    import "highlight.js/styles/default.css";
+    hljs.highlightAll();
+  </script>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabs = document.querySelectorAll(".tab-title");
+      const contents = document.querySelectorAll(".tab");
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          contents.forEach((c) => c.classList.remove("active"));
+
+          tab.classList.add("active");
+          contents[index].classList.add("active");
+        });
+      });
+
+      // Set the first tab as active by default
+      tabs[0].classList.add("active");
+      contents[0].classList.add("active");
+    });
+  </script>
+</MainLayout>
