@@ -22,8 +22,7 @@ const sample = samples.find((item) => item.path === '/video-overlay');
         justify-content: s;
 
         video {
-          width: 40% !important;
-          max-width: 160px;
+          width:  clamp(170px, 40vw, 300px) !important;
           height: auto;
           top: 0.5rem;
           right: 1rem;
@@ -67,9 +66,9 @@ const sample = samples.find((item) => item.path === '/video-overlay');
     var overlayVideo = document.createElement("video");
     overlayVideo.id = "video-overlay";
     overlayVideo.loop = true;
-    overlayVideo.autoplay = true;
+    overlayVideo.muted = true
     overlayVideo.src =
-      "https://d1lytwcb2ho7l3.cloudfront.net/qualabs-comcast-logo/QualabsComcastTransparent.webm";
+    "https://d1lytwcb2ho7l3.cloudfront.net/qualabs-comcast-logo/QualabsComcastTransparent.webm";
     overlayElement.appendChild(overlayVideo);
 
     player.on(dashjs.MediaPlayer.events.PLAYBACK_PLAYING, function () {
