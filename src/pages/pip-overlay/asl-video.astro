@@ -4,7 +4,7 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
 
 <IFrameLayout title="Qualabs | ASL Video">
   <div class="asl-container">
-    <video id="asl-video" preload="auto" loop autoplay muted></video>
+    <video id="asl-video" preload="auto" loop muted></video>
     <div id="ttml-rendering-div"></div>
   </div>
 </IFrameLayout>
@@ -57,6 +57,8 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
         break;
       case "paused":
         video.pause();
+        break;
+      case "timeupdate":
         break;
     }
   });
