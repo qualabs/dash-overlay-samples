@@ -78,13 +78,20 @@ import uru from "../assets/uru.png";
     align-items: center;
     padding: 0.5rem;
     width: max-content;
+
+    @media screen and (max-width: 768px) {
+    }
     .team {
       display: grid;
       gap: 0rem;
       align-items: center;
       justify-items: center;
       img {
-        width: 4rem;
+        width: 2rem;
+
+        @media screen and (min-width: 768px) {
+          width: 4rem;
+        }
       }
 
       h2 {
@@ -117,16 +124,20 @@ import uru from "../assets/uru.png";
     background-color: #fff;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
     border-radius: 0.5rem;
-    padding: 0.5rem;
+    padding: 0.1rem;
     height: fit-content;
     transition: all 0.3s ease;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transform-origin: top right;
+    margin-bottom: 30px;
 
     &:hover {
       box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    @media screen and (min-width: 768px) {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transform-origin: top right;
     }
 
     .stats-table {
@@ -135,14 +146,20 @@ import uru from "../assets/uru.png";
       border-spacing: 0;
       border-top: #333 1px solid;
 
-      padding: 1rem 2rem;
+      padding: 0.3rem;
       display: grid;
       overflow: hidden;
       transition: all 0.3s aes-in-out;
+      width: max-content;
+      margin: 0 auto;
+
+      @media screen and (min-width: 768px) {
+        padding: 1rem 2rem;
+      }
 
       td,
       th {
-        padding: 0.5rem 1rem;
+        padding: 0.1rem;
         text-align: center;
         font-size: 0.8rem;
         font-family: "Inter";
@@ -150,6 +167,10 @@ import uru from "../assets/uru.png";
         font-weight: 600;
         line-height: 250%;
         color: #000000;
+
+        @media screen and (min-width: 768px) {
+          padding: 0.5rem 1rem;
+        }
       }
     }
 
@@ -175,9 +196,15 @@ import uru from "../assets/uru.png";
     }
 
     &.collapsed {
-      top: 1rem;
-      left: 1rem;
+      top: 0.3rem;
+      left: 0.3rem;
       transform: translate(0, 0);
+
+      @media screen and (min-width: 768px) {
+        top: 1rem;
+        left: 1rem;
+        padding: 0.5rem;
+      }
 
       .stats-table {
         display: none;
@@ -189,12 +216,22 @@ import uru from "../assets/uru.png";
           display: flex;
 
           h2 {
-            width: 1.7rem;
+            width: 1.3rem;
             overflow: hidden;
+            font-size: 0.6rem;
+
+            @media screen and (min-width: 768px) {
+              font-size: 0.9rem;
+              width: 1.7rem;
+            }
           }
 
           img {
-            width: 2.4rem;
+            width: 1.4rem;
+
+            @media screen and (min-width: 768px) {
+              width: 2.4rem;
+            }
           }
 
           &:nth-child(1) {
@@ -209,7 +246,11 @@ import uru from "../assets/uru.png";
       }
       .show-less {
         #show-less-text {
-          font-size: 0.7rem;
+          font-size: 0.6rem;
+
+          @media screen and (min-width: 768px) {
+            font-size: 0.7rem;
+          }
         }
         img {
           transform: rotate(0deg);

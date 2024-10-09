@@ -67,7 +67,7 @@ export const samples = [
     description:
       "Monetize your content seamlessly by displaying ads directly over your videos.",
     path: "/ads-overlay",
-    url: "https://placehold.co/320x180/black/grey.png",
+    url: "video-thumbnails/thumbnail-ads-overlay.png",
     mpd: ``,
   },
   {
@@ -75,14 +75,14 @@ export const samples = [
     description:
       "Add interactive elements to your videos and expand the possibilities with clickable overlays.",
     path: "/interactive-overlay",
-    url: "https://placehold.co/320x180/black/grey.png",
+    url: "video-thumbnails/thumbnail-interactive-overlay.png",
     mpd: ``,
   },
   {
     title: "Picture-in-Picture Sports Match Overlay",
     description: "",
     path: "/pip-match-overlay",
-    url: "https://placehold.co/320x180/black/grey.png",
+    url: "video-thumbnails/thumbnail-pip-match-overlay.png",
     mpd: ``,
   },
 ];
