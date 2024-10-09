@@ -1,0 +1,15 @@
+html {
+  font-family: "Inter";
+  background: #080b36;
+}
+main {
+  margin: auto;
+  padding: 1rem 0;
+  width: 100%;
+  color: white;
+  font-size: 20px;
+  line-height: 1.6;
+  position: relative;
+  max-width: 1344px;
+}
+
