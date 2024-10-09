@@ -1,8 +1,11 @@
 ---
 import SampleLayout from "@layouts/SampleLayout.astro";
+import { samples } from "@utils/samples";
+
+const sample = samples.find((item) => item.path === '/video-overlay');
 ---
 
-<SampleLayout />
+<SampleLayout sample={sample}/>
 
 <style is:inline>
   main {

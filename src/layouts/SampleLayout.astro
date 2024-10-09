@@ -4,10 +4,8 @@ import MainLayout from "@layouts/MainLayout.astro";
 
 const currentPath = Astro.url.pathname;
 import hljs from "highlight.js";
-import { samples } from "src/utils/samples";
 
 import Controls from "@components/Controls.astro";
-const currentItem = samples.find((item) => item.path === currentPath);
 
 const tabs = [
   { id: "tab1", title: "Tab 1", content: "Content for Tab 1" },
@@ -16,13 +14,15 @@ const tabs = [
 ];
 
 let activeTab = tabs[0].id;
+const { sample } = Astro.props;
+
 ---
 
-<MainLayout title={`${currentItem.title}`}>
+<MainLayout title={sample.title}>
   <main>
     <div class="title-container">
-      <h1 transition:animate="slide">{currentItem.title}</h1>
-      <p transition:animate="slide">{currentItem.description}</p>
+      <h1 transition:animate="slide">{sample.title}</h1>
+      <p transition:animate="slide">{sample.description}</p>
     </div>
     <div class="tabs">
       <div class="tab-titles" transition:animate="slide">
@@ -45,7 +45,7 @@ let activeTab = tabs[0].id;
           <pre
             lang="xml">
             <code class="language-xml">
-            {currentItem.mpd}
+            {sample.mpd}
             </code>
           </pre>
         </div>

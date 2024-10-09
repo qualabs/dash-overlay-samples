@@ -1,8 +1,12 @@
 ---
 import SampleLayout from "@layouts/SampleLayout.astro";
+import { samples } from "@utils/samples";
+
+const sample = samples.find((item) => item.path === '/ads-overlay');
+
 ---
 
-<SampleLayout />
+<SampleLayout sample={sample}/>
 
 <script class="code">
   var CAPTION_URL =
