@@ -34,7 +34,13 @@ const { sample } = Astro.props;
         <div class="tab" id="sample">
           <div class="video-container">
             <Controls />
-            <video id="main-video" preload="auto" loop autoplay muted> </video>
+            <video 
+              id="main-video" 
+              preload="auto" 
+              loop 
+              autoplay 
+              muted
+              > </video>
             <div id="overlay">
               <slot />
             </div>
@@ -291,7 +297,7 @@ const { sample } = Astro.props;
   </script>
 
   <script is:inline>
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("astro:page-load", () => {
       const tabs = document.querySelectorAll(".tab-title");
       const contents = document.querySelectorAll(".tab");
 
@@ -305,7 +311,6 @@ const { sample } = Astro.props;
         });
       });
 
-      // Set the first tab as active by default
       tabs[0].classList.add("active");
       contents[0].classList.add("active");
     });
