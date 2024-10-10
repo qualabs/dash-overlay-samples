@@ -4,7 +4,7 @@ export const samples = [
     description:
       "By using the HTML overlays inserted in the MPD, it is possible to alert all users of any threat that may be near their home or the location where they are viewing the content.",
     path: "/iframe-overlay",
-    url: "video-thumbnails/thumbnail-warning.png",
+    url: "/video-thumbnails/thumbnail-warning.png",
     mpd: `
     <?xml version="1.0" encoding="UTF-8"?>
     <MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -61,7 +61,7 @@ export const samples = [
     description:
       "As overlays can be videos you can make content accessible for everyone adding sign language interpretation to your videos by doing a Picture-in-Picture. HINT: if you pause the video, the overlay will pause too.",
     path: "/pip-overlay",
-    url: "video-thumbnails/thumbnail-asl.png",
+    url: "/video-thumbnails/thumbnail-asl.png",
     mpd: `
 <?xml version="1.0" encoding="UTF-8"?>
 <MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -122,7 +122,7 @@ export const samples = [
     description:
       "Using your VOD library to create FAST channels is a great way to monetize your content. Now, with Overlays, it’s also possible to add your logo without the need to pre-process the video. In this example, you can see an overlay of a video with transparency on top of the FAST channel content. HINT: if you pause the video, the overlay will pause too.",
     path: "/video-overlay",
-    url: "video-thumbnails/thumbnail-with-logo.png",
+    url: "/video-thumbnails/thumbnail-with-logo.png",
     mpd: `
 <?xml version="1.0" encoding="UTF-8"?>
 <MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -184,7 +184,7 @@ export const samples = [
     description:
       "With Overlays, you can monetize your content seamlessly by displaying ads directly over your videos using HTML or video Overlays.",
     path: "/ads-overlay",
-    url: "video-thumbnails/thumbnail-ads-overlay.png",
+    url: "/video-thumbnails/thumbnail-ads-overlay.png",
     mpd: `
 <?xml version="1.0" encoding="UTF-8"?>
 <MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -244,7 +244,7 @@ export const samples = [
     description:
       "Add interactive elements to your videos and expand the possibilities with clickable overlays (don't be shy and press the 'Show stats' button). Also, update your previous overlays with new information to keep sync between your video and overlay content.",
     path: "/interactive-overlay",
-    url: "video-thumbnails/thumbnail-interactive-overlay.png",
+    url: "/video-thumbnails/thumbnail-interactive-overlay.png",
     mpd: `
 <?xml version="1.0" encoding="UTF-8"?>
 <MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -308,7 +308,7 @@ export const samples = [
     title: "Picture-in-Picture Sports Match Overlay",
     description: "Two important sporting events happening at the same time? Create Picture-in-Picture experiences showcasing these events on the MPD so your customers don't need to do more channel surfing. HINT: if you pause the video, the overlay will pause too.",
     path: "/pip-match-overlay",
-    url: "video-thumbnails/thumbnail-pip-match-overlay.png",
+    url: "/video-thumbnails/thumbnail-pip-match-overlay.png",
     mpd: `<?xml version="1.0" encoding="UTF-8"?>
 <MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="urn:mpeg:dash:schema:mpd:2011"

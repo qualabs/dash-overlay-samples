@@ -34,7 +34,7 @@ const sample = samples.find((item) => item.path === '/iframe-overlay');
   function attachOverlayRenderingDiv(overlayElement) {
     var $overlayIframe = document.createElement("iframe");
     $overlayIframe.id = "iframe-overlay";
-    $overlayIframe.src = "iframe-overlay/emergency-alert";
+    $overlayIframe.src = "/iframe-overlay/emergency-alert";
     $overlayIframe.frameBorder = 0;
     overlayElement.appendChild($overlayIframe);
 

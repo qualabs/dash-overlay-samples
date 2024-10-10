@@ -29,7 +29,7 @@ const sample = samples.find((item) => item.path === '/interactive-overlay');
   function attachOverlayRenderingDiv(overlayElement) {
     var overlayIframe = document.createElement("iframe");
     overlayIframe.id = "iframe-overlay";
-    overlayIframe.src = "interactive-overlay/score-counter";
+    overlayIframe.src = "/interactive-overlay/score-counter";
     overlayIframe.frameBorder = 0;
     overlayElement.appendChild(overlayIframe);
 

@@ -30,7 +30,7 @@ const sample = samples.find((item) => item.path === '/pip-overlay');
   function attachOverlayRenderingDiv(overlayElement) {
     var overlayIframe = document.createElement("iframe");
     overlayIframe.id = "iframe-overlay";
-    overlayIframe.src = "pip-overlay/asl-video";
+    overlayIframe.src = "/pip-overlay/asl-video";
     overlayIframe.frameBorder = 0;
     overlayElement.appendChild(overlayIframe);
 
