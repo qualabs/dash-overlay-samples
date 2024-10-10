@@ -195,6 +195,14 @@ import uru from "../assets/uru.png";
       }
     }
 
+    &:not(.collapsed) {
+      .show-less {
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
+      }
+    }
+
     &.collapsed {
       top: 0.3rem;
       left: 0.3rem;
@@ -277,7 +285,10 @@ import uru from "../assets/uru.png";
     });
 
     window.addEventListener("click", (e) => {
-      if (!statsContainer.contains(e.target) && !statsContainer.classList.contains("collapsed")) {
+      if (
+        !statsContainer.contains(e.target) &&
+        !statsContainer.classList.contains("collapsed")
+      ) {
         statsContainer.classList.add("collapsed");
         showLessText.textContent = "Show Stats";
       }
