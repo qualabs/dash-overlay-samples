@@ -4,7 +4,7 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
 ---
 
 <IFrameLayout title="Qualabs | ASL Video">
-  <div id="ad-overlay" class="ad-container">
+  <div id="banner" class="banner-container">
     <Marquee />
   </div>
 </IFrameLayout>
@@ -19,7 +19,7 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
       overflow: hidden;
     }
   }
-  .ad-container {
+  .banner-container {
     width: 100%;
     transition: all ease-in-out 2s;
     position: absolute;
@@ -48,13 +48,13 @@ import IFrameLayout from "@layouts/IframeLayout.astro";
     }
 
     if (currentTime > 3 && currentTime < 20) {
-      document.getElementById("ad-overlay").classList.add("shown");
-      document.getElementById("ad-overlay").classList.remove("hide");
+      document.getElementById("banner").classList.add("shown");
+      document.getElementById("banner").classList.remove("hide");
     }
 
     if (currentTime >= 20) {
-      document.getElementById("ad-overlay").classList.remove("shown");
-      document.getElementById("ad-overlay").classList.add("hide");
+      document.getElementById("banner").classList.remove("shown");
+      document.getElementById("banner").classList.add("hide");
     }
   });
 </script>
