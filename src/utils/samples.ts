@@ -59,7 +59,8 @@ export const samples = [
   {
     title: "Picture-in-Picture Sign Language Video",
     description:
-      "As overlays can be videos you can make content accessible for everyone adding sign language interpretation to your videos by doing a Picture-in-Picture. HINT: if you pause the video, the overlay will pause too.",
+      "As overlays can be videos you can make content accessible for everyone adding sign language interpretation to your videos by doing a Picture-in-Picture",
+    hint: "If you pause the video, the overlay will pause too.",
     path: "/pip-overlay",
     url: "/video-thumbnails/thumbnail-asl.png",
     mpd: `
@@ -120,7 +121,8 @@ export const samples = [
   {
     title: "Add your logo in your FAST channels",
     description:
-      "Using your VOD library to create FAST channels is a great way to monetize your content. Now, with Overlays, it’s also possible to add your logo without the need to pre-process the video. In this example, you can see an overlay of a video with transparency on top of the FAST channel content. HINT: if you pause the video, the overlay will pause too.",
+      "Using your VOD library to create FAST channels is a great way to monetize your content. Now, with Overlays, it’s also possible to add your logo without the need to pre-process the video. In this example, you can see an overlay of a video with transparency on top of the FAST channel content.",
+    hint: "If you pause the video, the overlay will pause too.",
     path: "/video-overlay",
     url: "/video-thumbnails/thumbnail-with-logo.png",
     mpd: `
@@ -306,7 +308,9 @@ export const samples = [
   },
   {
     title: "Picture-in-Picture Sports Match Overlay",
-    description: "Two important sporting events happening at the same time? Create Picture-in-Picture experiences showcasing these events on the MPD so your customers don't need to do more channel surfing. HINT: if you pause the video, the overlay will pause too.",
+    description:
+      "Two important sporting events happening at the same time? Create Picture-in-Picture experiences showcasing these events on the MPD so your customers don't need to do more channel surfing.",
+    hint: "If you pause the video, the overlay will pause too.",
     path: "/pip-match-overlay",
     url: "/video-thumbnails/thumbnail-pip-match-overlay.png",
     mpd: `<?xml version="1.0" encoding="UTF-8"?>

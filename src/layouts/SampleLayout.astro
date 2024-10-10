@@ -21,7 +21,16 @@ const { sample } = Astro.props;
   <main>
     <div class="title-container">
       <h1 transition:animate="slide">{sample.title}</h1>
-      <p transition:animate="slide">{sample.description}</p>
+      <p transition:animate="slide">
+        {sample.description}
+      </p>
+      {
+        sample.hint && (
+          <p class="hint" transition:animate="slide">
+            {sample.hint}
+          </p>
+        )
+      }
     </div>
     <div class="tabs">
       <div class="tab-titles" transition:animate="slide">
@@ -30,7 +39,7 @@ const { sample } = Astro.props;
       </div>
 
       <div class="tab-content">
-        <div class="tab" id="sample">
+        <div class="tab active" id="sample">
           <div class="video-container">
             <Controls />
             <video id="main-video" preload="auto" loop autoplay muted> </video>
@@ -66,6 +75,7 @@ const { sample } = Astro.props;
 
         @media screen and (min-width: 768px) {
           justify-items: start;
+          text-align: left;
         }
         h1 {
           font-size: 1rem;
@@ -76,6 +86,7 @@ const { sample } = Astro.props;
 
           @media (min-width: 768px) {
             font-size: 1.5rem;
+            text-align: left;
           }
         }
 
@@ -84,11 +95,45 @@ const { sample } = Astro.props;
           font-style: normal;
           font-weight: 300;
           font-size: 0.75rem;
-          line-height: 120%;
+          line-height: 140%;
           color: rgba(255, 255, 255, 0.8);
           text-align: center;
+
           @media (min-width: 768px) {
             font-size: 1rem;
+            text-align: left;
+            line-height: 140%;
+          }
+        }
+        .hint {
+          display: block;
+          width: max-content;
+          padding: 0.3rem 0.5rem;
+          border-left: 3px solid #0066ff;
+
+          margin-top: 0.3rem;
+          background: #0000005e;
+
+          @media screen and (min-width: 768px) {
+            padding: 0.3rem 1rem;
+            margin-top: 0.8rem;
+          }
+
+          &::before {
+            content: "Hint: ";
+            background: url(/hint.svg) no-repeat;
+            width: max-content;
+            height: max-content;
+            margin-top: 0.5rem;
+            font-weight: 500;
+            color: #abc6f0;
+            background-size: 1rem;
+            padding-left: 1.2rem;
+
+            @media screen and (min-width: 768px) {
+              background-size: 1.2rem;
+              padding-left: 1.5rem;
+            }
           }
         }
       }
@@ -99,7 +144,7 @@ const { sample } = Astro.props;
         > video {
           width: 100%;
           aspect-ratio: 16 / 9;
-          background: black;
+          background: #152b5d;
           border-radius: 0.5rem;
           &::-webkit-media-controls-timeline,
           &::-webkit-media-controls-volume-slider,
@@ -188,6 +233,7 @@ const { sample } = Astro.props;
     }
     .tab-content {
       padding-top: 0.7rem;
+      aspect-ratio: 16 / 9;
 
       .tag {
         color: #0077aa;
