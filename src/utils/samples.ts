@@ -244,7 +244,8 @@ export const samples = [
   {
     title: "Interactive Overlays",
     description:
-      "Add interactive elements to your videos and expand the possibilities with clickable overlays (don't be shy and press the 'Show stats' button). Also, update your previous overlays with new information to keep sync between your video and overlay content.",
+      "Add interactive elements to your videos and expand the possibilities with clickable overlays. Also, update your previous overlays with new information to keep sync between your video and overlay content.",
+    hint: "Don't be shy and press the 'Show stats' button ;)",
     path: "/interactive-overlay",
     url: "/video-thumbnails/thumbnail-interactive-overlay.png",
     mpd: `
@@ -310,7 +311,7 @@ export const samples = [
     title: "Picture-in-Picture Sports Match Overlay",
     description:
       "Two important sporting events happening at the same time? Create Picture-in-Picture experiences showcasing these events on the MPD so your customers don't need to do more channel surfing.",
-    hint: "If you pause the video, the overlay will pause too.",
+    hint: "Press the expand button on the PiP overlay!",
     path: "/pip-match-overlay",
     url: "/video-thumbnails/thumbnail-pip-match-overlay.png",
     mpd: `<?xml version="1.0" encoding="UTF-8"?>
