@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 import { Image } from "astro:assets";
 import dashjsLogo from "../assets/dashjs-logo.svg";
@@ -26,8 +26,8 @@ const { title } = Astro.props;
       name="description"
       content="Unlock new possibilities adding video and dynamic HTML overlays to your content!"
     />
-    <meta name="keywords" content="dash.js, dash, demuxed">
-    <meta name="author" content="Qualabs">
+    <meta name="keywords" content="dash.js, dash, demuxed" />
+    <meta name="author" content="Qualabs" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
@@ -41,12 +41,19 @@ const { title } = Astro.props;
       <slot />
     </main>
     <footer>
-      <p class="copyright">a Comcast - <a href="https://qualabs.com">Qualabs</a> collaboration</p>
+      <p class="copyright">
+        This project is a <a
+          target="_blank"
+          href="https://corporate.comcast.com/"
+        >
+          Comcast
+        </a>
+        - <a target="_blank" href="https://qualabs.com">Qualabs</a> collaboration
+      </p>
     </footer>
   </body>
 </html>
 <style is:global>
- 
   .logo {
     margin: 0 auto;
     width: 10rem;
@@ -62,8 +69,13 @@ const { title } = Astro.props;
     text-align: center;
     font-size: 1rem;
     font-weight: 300;
-    opacity: 0.5;
-    color: white;
+    color: rgba(255, 255, 255, 0.708);
+
+    a {
+      color: white;
+      opacity: 1;
+      text-decoration: underline;
+    }
   }
   code {
     font-family:
