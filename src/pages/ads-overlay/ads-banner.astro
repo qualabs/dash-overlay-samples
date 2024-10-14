@@ -1,0 +1,60 @@
+---
+import Marquee from "@components/Marquee.astro";
+import IFrameLayout from "@layouts/IframeLayout.astro";
+---
+
+<IFrameLayout title="Qualabs | ASL Video">
+  <div id="banner" class="banner-container">
+    <Marquee />
+  </div>
+</IFrameLayout>
+
+<style>
+  html {
+    overflow: hidden;
+
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+  .banner-container {
+    width: 100%;
+    transition: all ease-in-out 2s;
+    position: absolute;
+    bottom: 0;
+    transform: translateX(100%);
+
+    &.shown {
+      transform: translateX(10%);
+    }
+    &.hidden {
+      transform: translateX(100%);
+    }
+  }
+</style>
+
+<script>
+  let currentTime = 0;
+
+  window.addEventListener("message", function (event) {
+    var data = event.data;
+
+    switch (data.event) {
+      case "timeupdate":
+        currentTime = data.currentTime;
+        break;
+    }
+
+    if (currentTime > 3 && currentTime < 20) {
+      document.getElementById("banner").classList.add("shown");
+      document.getElementById("banner").classList.remove("hide");
+    }
+
+    if (currentTime >= 20) {
+      document.getElementById("banner").classList.remove("shown");
+      document.getElementById("banner").classList.add("hide");
+    }
+  });
+</script>

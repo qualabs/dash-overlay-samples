@@ -1,0 +1,201 @@
+---
+import { Image } from "astro:assets";
+import imageIcon from "../assets/icons/image.svg";
+import PopOverlay from "./PopOverlay.astro";
+import qualabsAd from "../assets/qualabs-ad.png";
+import countDown from "../assets/countdown.png";
+import rocket from "../assets/rocket.png";
+import videoIcon from "../assets/icons/video.svg";
+import iframeIcon from "../assets/icons/iframe.svg";
+---
+
+<div class="hero-container">
+  <div class="hero-content">
+    <h1 transition:animate="slide">
+      Elevate Video Experiences with <strong>Dynamic Overlays!</strong>
+    </h1>
+    <p>
+      Unlock new possibilities adding dynamic video and HTML <strong
+        >overlays</strong
+      > to your DASH content
+    </p>
+  </div>
+  <div class="hero-image">
+    <video
+      transition:name="video"
+      id="video"
+      class="video"
+      autoplay
+      muted
+      loop
+      src="https://d1lytwcb2ho7l3.cloudfront.net/rocket/rocket.mp4"></video>
+
+    <PopOverlay
+      title="Image"
+      icon={imageIcon}
+      top="0.5rem"
+      left="0.5rem"
+      backgroundColor="#D9E74C"
+      color="#3E3E3E"
+      delay="1s"
+    >
+      <img src={rocket.src} alt="Fake Logo" class="logo-image" />
+    </PopOverlay>
+    <PopOverlay
+      title="PIP Video"
+      icon={videoIcon}
+      top="0.5rem"
+      right="0.5rem"
+      backgroundColor="#D9E74C"
+      color="#3E3E3E"
+      delay="2s"
+    >
+      <video
+        id="video"
+        class="video-pip"
+        loop
+        autoplay
+        muted
+        src="https://d1lytwcb2ho7l3.cloudfront.net/reporter/reporter.mp4"
+      ></video>
+    </PopOverlay>
+    <PopOverlay
+      title="Image"
+      icon={videoIcon}
+      bottom="0.5rem"
+      left="0.5rem"
+      backgroundColor="#D9E74C"
+      color="#3E3E3E"
+      delay="4s"
+    >
+      <img src={qualabsAd.src} alt="Qualabs Ad" class="qualabs-ad-image" />
+    </PopOverlay>
+    <PopOverlay
+      title="Image"
+      icon={iframeIcon}
+      bottom="0.5rem"
+      right="0.5rem"
+      backgroundColor="#D9E74C"
+      color="#3E3E3E"
+      delay="6s"
+    >
+      <img src={countDown.src} alt="countdown image" class="countdown-image" />
+    </PopOverlay>
+  </div>
+
+  <style>
+    .hero-container {
+      display: grid;
+      gap: 1rem;
+      padding: 1rem;
+      position: relative;
+      z-index: 2;
+
+      .hero-content {
+        display: grid;
+        gap: 0.5rem;
+
+        h1 {
+          font-size: 1.125rem;
+          font-weight: 400;
+          text-align: center;
+
+          strong {
+            font-weight: 600;
+          }
+        }
+
+        p {
+          font-size: 0.85rem;
+          text-align: center;
+          font-weight: 400;
+          line-height: 150%;
+
+          text-align: center;
+
+          color: rgba(255, 255, 255, 0.7);
+
+          strong {
+            font-weight: 600;
+            color: white;
+          }
+        }
+      }
+      .hero-image {
+        position: relative;
+        /*     transform: perspective(900px) rotateX(13deg) rotateY(339deg)
+          rotateZ(3deg) scale(1.03); */
+        > video {
+          aspect-ratio: 16 / 9;
+          width: 100%;
+          border-radius: 0.5rem;
+          background-color: #152b5d;
+        }
+
+        .qualabs-ad-image {
+          width: 120px;
+        }
+
+        .countdown-image {
+          width: 90px;
+        }
+
+        .video-pip {
+          max-width: 120px;
+          height: auto;
+          aspect-ratio: 6 / 3;
+          object-fit: cover;
+          object-position: top;
+        }
+
+        .logo-image {
+          width: 90px;
+          padding: 0.35rem;
+        }
+      }
+
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding: 2rem 4rem;
+
+        .hero-content {
+          h1 {
+            font-size: 2.5rem;
+            line-height: 120%;
+            text-align: left;
+          }
+
+          p {
+            width: 50%;
+            text-align: left;
+            font-size: 1rem;
+          }
+        }
+
+        .hero-image {
+          .qualabs-ad-image {
+            width: 190px;
+          }
+
+          .countdown-image {
+            width: 150px;
+          }
+
+          .video-pip {
+            max-width: 220px;
+            height: auto;
+            aspect-ratio: 6 / 3;
+            object-fit: cover;
+            object-position: top;
+          }
+
+          .logo-image {
+            width: 120px;
+            padding: 0.35rem;
+          }
+        }
+      }
+    }
+  </style>
+</div>

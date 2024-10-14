@@ -1,0 +1,123 @@
+<style lang="scss">
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 1rem;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    color: white;
+    z-index: 9;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+
+    &.show {
+      opacity: 1;
+    }
+
+    button {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      width: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+</style>
+
+<div class="controls show">
+  <button id="play-pause-button">
+    <svg
+      width="18"
+      height="22"
+      viewBox="0 0 12 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M0.6 0H3.9C4.05913 0 4.21174 0.0632142 4.32426 0.175736C4.43679 0.288258 4.5 0.44087 4.5 0.6V12.9C4.5 13.0591 4.43679 13.2117 4.32426 13.3243C4.21174 13.4368 4.05913 13.5 3.9 13.5H0.6C0.44087 13.5 0.288258 13.4368 0.175736 13.3243C0.063214 13.2117 0 13.0591 0 12.9V0.6C0 0.44087 0.063214 0.288258 0.175736 0.175736C0.288258 0.0632142 0.44087 0 0.6 0ZM8.1 0H11.4C11.5591 0 11.7117 0.0632142 11.8243 0.175736C11.9368 0.288258 12 0.44087 12 0.6V12.9C12 13.0591 11.9368 13.2117 11.8243 13.3243C11.7117 13.4368 11.5591 13.5 11.4 13.5H8.1C7.94087 13.5 7.78826 13.4368 7.67574 13.3243C7.56321 13.2117 7.5 13.0591 7.5 12.9V0.6C7.5 0.44087 7.56321 0.288258 7.67574 0.175736C7.78826 0.0632142 7.94087 0 8.1 0Z"
+        fill="white"></path>
+    </svg>
+  </button>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const $controls = document.querySelector(".controls");
+    const $video = document.querySelector("video");
+    const $playButton = document.querySelector("#play-pause-button");
+
+    const togglePlayPause = () => {
+      if ($video.paused) {
+        $video.play();
+        $playButton.innerHTML = `<svg
+  width="18"
+  height="22"
+  viewBox="0 0 12 14"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M0.6 0H3.9C4.05913 0 4.21174 0.0632142 4.32426 0.175736C4.43679 0.288258 4.5 0.44087 4.5 0.6V12.9C4.5 13.0591 4.43679 13.2117 4.32426 13.3243C4.21174 13.4368 4.05913 13.5 3.9 13.5H0.6C0.44087 13.5 0.288258 13.4368 0.175736 13.3243C0.063214 13.2117 0 13.0591 0 12.9V0.6C0 0.44087 0.063214 0.288258 0.175736 0.175736C0.288258 0.0632142 0.44087 0 0.6 0ZM8.1 0H11.4C11.5591 0 11.7117 0.0632142 11.8243 0.175736C11.9368 0.288258 12 0.44087 12 0.6V12.9C12 13.0591 11.9368 13.2117 11.8243 13.3243C11.7117 13.4368 11.5591 13.5 11.4 13.5H8.1C7.94087 13.5 7.78826 13.4368 7.67574 13.3243C7.56321 13.2117 7.5 13.0591 7.5 12.9V0.6C7.5 0.44087 7.56321 0.288258 7.67574 0.175736C7.78826 0.0632142 7.94087 0 8.1 0Z"
+    fill="white"></path>
+</svg>`;
+      } else {
+        $video.pause();
+        $playButton.innerHTML = `
+
+<svg width="18" height="22" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.394 8.04553L1.8495 13.5835C1.0395 14.053 0 13.4845 0 12.538V1.46203C0 0.517034 1.038 -0.0529664 1.8495 0.418034L11.394 5.95603C11.5783 6.06122 11.7314 6.21326 11.8379 6.39674C11.9445 6.58023 12.0006 6.78862 12.0006 7.00078C12.0006 7.21295 11.9445 7.42134 11.8379 7.60482C11.7314 7.7883 11.5783 7.94035 11.394 8.04553Z" fill="white"/>
+</svg>
+`;
+      }
+    };
+
+    $playButton.addEventListener("click", togglePlayPause);
+
+    let timeoutId;
+
+    const showControls = () => {
+      $controls.classList.add("show");
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(hideControls, 3000);
+    };
+
+    const hideControls = () => {
+      $controls.classList.remove("show");
+    };
+
+    const resetTimeout = () => {
+      clearTimeout(timeoutId);
+      showControls();
+    };
+
+    $controls.addEventListener("mousemove", resetTimeout);
+    $controls.addEventListener("click", resetTimeout);
+    $controls.addEventListener("touchstart", resetTimeout);
+
+    $video.addEventListener("play", () => {
+      timeoutId = setTimeout(hideControls, 3000);
+    });
+
+    $controls.addEventListener("mouseover", showControls);
+    $controls.addEventListener("mouseleave", () => {
+      timeoutId = setTimeout(hideControls, 3000);
+    });
+
+    $video.addEventListener("pause", showControls);
+
+    showControls();
+  });
+</script>

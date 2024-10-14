@@ -1,0 +1,22 @@
+---
+import Counter from "@components/Counter.astro";
+import IFrameLayout from "@layouts/IframeLayout.astro";
+---
+
+<IFrameLayout title="Qualabs | Score Counter">
+  <Counter />
+</IFrameLayout>
+
+<script>
+  let currentTime = 0;
+
+  window.addEventListener("message", function (event) {
+    var data = event.data;
+
+    switch (data.event) {
+      case "timeupdate":
+        currentTime = data.currentTime;
+        break;
+    }
+  });
+</script>

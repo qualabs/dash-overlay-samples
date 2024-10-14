@@ -1,0 +1,67 @@
+---
+import IFrameLayout from "@layouts/IframeLayout.astro";
+---
+
+<IFrameLayout title="Qualabs | ASL Video">
+  <div class="asl-container">
+    <video id="asl-video" preload="auto" loop muted></video>
+    <div id="ttml-rendering-div"></div>
+  </div>
+</IFrameLayout>
+
+<style lang="scss">
+  .asl-container {
+    width: 35%;
+    height: auto;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+
+    :hover {
+      background-color: aquamarine;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 30%;
+    }
+  }
+</style>
+
+<script is:inline src="https://cdn.dashjs.org/v3.1.0/dash.all.min.js"></script>
+
+<script>
+  var CAPTION_URL =
+      "https://d1lytwcb2ho7l3.cloudfront.net/asl_1920x1080/dash/output.mpd",
+    $video,
+    player;
+
+  function init() {
+    var url = CAPTION_URL,
+      $TTMLRenderingDiv;
+
+    $video = document.querySelector("#asl-video");
+    $TTMLRenderingDiv = document.querySelector("#ttml-rendering-div");
+
+    player = dashjs.MediaPlayer().create();
+    player.initialize($video, url, true);
+    player.attachTTMLRenderingDiv($TTMLRenderingDiv);
+  }
+
+  window.addEventListener("message", function (event) {
+    var video = document.getElementById("asl-video");
+    var data = event.data;
+
+    switch (data.event) {
+      case "playing":
+        video.play();
+        break;
+      case "paused":
+        video.pause();
+        break;
+      case "timeupdate":
+        break;
+    }
+  });
+
+  init();
+</script>

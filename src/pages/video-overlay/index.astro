@@ -1,0 +1,87 @@
+---
+import SampleLayout from "@layouts/SampleLayout.astro";
+import { samples } from "@utils/samples";
+
+const sample = samples.find((item) => item.path === '/video-overlay');
+---
+
+<SampleLayout sample={sample}/>
+
+<style is:inline>
+  main {
+    .video-container {
+      #overlay {
+        position: absolute;
+        pointer-events: none;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        align-items: start;
+        justify-content: s;
+
+        video {
+          width:  clamp(220px, 40vw, 500px) !important;
+          height: auto;
+          top: 0.5rem;
+          right: 1rem;
+          position: absolute;
+          filter: drop-shadow(#000 1px 0 10px);
+        }
+      }
+    }
+  }
+
+  .dash-video-player {
+    position: relative;
+    margin: 0 auto;
+    line-height: 1;
+  }
+</style>
+
+<script class="code">
+  var CAPTION_URL =
+      "https://rdmedia.bbc.co.uk/bbb/2/client_manifest-common_init.mpd",
+    video,
+    player;
+
+  function init() {
+    var url = CAPTION_URL,
+      TTMLRenderingDiv;
+
+    video = document.querySelector("#main-video");
+    TTMLRenderingDiv = document.querySelector("#ttml-rendering-div");
+    OverlayRenderingDiv = document.querySelector("#overlay");
+
+    player = dashjs.MediaPlayer().create();
+    player.initialize(video, url, true);
+    player.attachTTMLRenderingDiv(TTMLRenderingDiv);
+
+    /* This funciton will be part of dash.js*/
+    attachVideoOverlayRenderingDiv(OverlayRenderingDiv);
+  }
+
+  function attachVideoOverlayRenderingDiv(overlayElement) {
+    var overlayVideo = document.createElement("video");
+    overlayVideo.id = "video-overlay";
+    overlayVideo.loop = true;
+    overlayVideo.muted = true
+    overlayVideo.src =
+    "https://d1lytwcb2ho7l3.cloudfront.net/qualabs-comcast-logo/QualabsComcastTransparent.webm";
+    overlayElement.appendChild(overlayVideo);
+
+    player.on(dashjs.MediaPlayer.events.PLAYBACK_PLAYING, function () {
+      overlayVideo.play();
+    });
+
+    player.on(dashjs.MediaPlayer.events.PLAYBACK_PAUSED, function () {
+      overlayVideo.pause();
+    });
+  }
+  init();
+
+  document.addEventListener("astro:before-preparation", () => {
+    init();
+  });
+</script>

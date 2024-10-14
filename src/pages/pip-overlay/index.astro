@@ -1,0 +1,61 @@
+---
+import SampleLayout from "@layouts/SampleLayout.astro";
+import { samples } from "@utils/samples";
+
+const sample = samples.find((item) => item.path === '/pip-overlay');
+---
+
+<SampleLayout sample={sample}/>
+
+<script class="code">
+  var CAPTION_URL =
+      "https://d1lytwcb2ho7l3.cloudfront.net/news/dash/output.mpd",
+    video,
+    player;
+
+  function init() {
+    var url = CAPTION_URL,
+      TTMLRenderingDiv;
+
+    video = document.querySelector("#main-video");
+    TTMLRenderingDiv = document.querySelector("#ttml-rendering-div");
+    OverlayRenderingDiv = document.querySelector("#overlay");
+
+    player = dashjs.MediaPlayer().create();
+    player.initialize(video, url, true);
+    player.attachTTMLRenderingDiv(TTMLRenderingDiv);
+    attachOverlayRenderingDiv(OverlayRenderingDiv);
+  }
+
+  function attachOverlayRenderingDiv(overlayElement) {
+    var overlayIframe = document.createElement("iframe");
+    overlayIframe.id = "iframe-overlay";
+    overlayIframe.src = "/pip-overlay/asl-video";
+    overlayIframe.frameBorder = 0;
+    overlayElement.appendChild(overlayIframe);
+
+    player.on(dashjs.MediaPlayer.events.PLAYBACK_TIME_UPDATED, function (e) {
+      sendMessageToIframe(overlayIframe, {
+        event: "timeupdate",
+        currentTime: e.time,
+      });
+    });
+
+    player.on(dashjs.MediaPlayer.events.PLAYBACK_STARTED, function () {
+      sendMessageToIframe(overlayIframe, { event: "playing" });
+    });
+
+    player.on(dashjs.MediaPlayer.events.PLAYBACK_PAUSED, function () {
+      sendMessageToIframe(overlayIframe, { event: "paused" });
+    });
+  }
+
+  function sendMessageToIframe(iframe, message) {
+    console.log(message);
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage(message, "*");
+    }
+  }
+
+  init();
+</script>
